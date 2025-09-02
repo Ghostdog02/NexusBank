@@ -3,7 +3,18 @@ import express, { json, urlencoded } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+import {
+  AngularNodeAppEngine,
+  createNodeRequestHandler,
+  isMainModule,
+  writeResponseToNodeResponse,
+} from "@angular/ssr/node";
+import { join } from "node:path";
+
+const browserDistFolder = join(import.meta.dirname, '../browser');
+
 var app = express();
+const angularApp = new AngularNodeAppEngine();
 
 app.use(logger('dev'));
 app.use(json());
