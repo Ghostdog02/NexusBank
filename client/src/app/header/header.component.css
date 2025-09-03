@@ -1,0 +1,23 @@
+a {
+    color: aliceblue;
+    font-size: 25px;
+}
+
+button {
+    color-scheme: black;
+}
+
+.navbar-brand {
+    flex-grow: 1;
+    font-size: 25px;
+}
+
+.navbar-nav {
+    align-self: flex-start;
+    margin-left: auto;
+    size: 25px;
+}
+
+.nav-button {
+    margin-left: 1rem;
+}

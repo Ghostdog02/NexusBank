@@ -13,5 +13,10 @@
     "jade": "^0.29.0",
     "morgan": "^1.10.1"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "eslint": "^9.34.0",
+    "globals": "^16.3.0"
+  }
 }
