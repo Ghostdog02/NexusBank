@@ -2,21 +2,35 @@
   <div class="col-12 col-md-6 col-lg-4">
     <div class="card">
       <div class="card-body">
-        <form style="font-size: 17px">
+        <form [formGroup]="loginForm" (submit)="onLogin()" style="font-size: 17px">
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <label for="inputEmail" class="form-label">Email address</label>
+            <input 
+              type="email" 
+              class="form-control" 
+              id="inputEmail" 
+              aria-describedby="emailHelp" 
+              formControlName="email"
+            />
+            <p style="color: red;">
+                Please enter a valid email address with no more than 64 characters before the @ 
+                symbol that doesn't start or end with a period, followed by a valid domain name, 
+                with the entire address being no longer than 254 characters total.
+            </p>
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input 
+              type="password" 
+              class="form-control" 
+              id="inputPassword" 
+              formControlName="password"
+            >
+            <p style="color: red;">
+                Minimum eight characters, at least one letter, one number and one special character
+            </p>
           </div>
-          <!-- <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div> -->
-          <button type="submit" class="btn btn-primary" style="font-size: 25px;">Submit</button>
+          <button type="submit" class="btn btn-primary" style="font-size: 17px" >Submit</button>
         </form>
       </div>
     </div>

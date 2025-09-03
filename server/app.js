@@ -2,16 +2,28 @@ import createError from 'http-errors';
 import express, { json, urlencoded } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import mongoose from "mongoose";
 
 var app = express();
+
+mongoose
+  .connect(
+    `mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.7`
+  )
+  .then(() => {
+    console.log("Connected to database");
+  })
+  .catch(() => {
+    console.log("Connection failed!");
+  });
+
 
 app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use("/api/auth", authRoutes);
 
 app.use(function(req, res, next) {
   next(createError(404));
