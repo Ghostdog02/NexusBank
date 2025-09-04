@@ -1,48 +1,11 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import process from "process";
+import express from "express";
 
-import User from "../models/user";
+import UserController from "../controllers/auth.js";
 
-export const loginUser = async (req, res) => {
-    const unauthorizedCode = 401;
-    const successCode = 200;
+const router = express.Router();
 
-    try {
-        const user = await User.findOne({ email: req.body.email }).exec();
+router.post("/signup", UserController.createUser);
 
-        if (!user) {
-          return res.status(unauthorizedCode).json({
-            message: "Auth failed",
-          });
-        }
+router.post("/login", UserController.loginUser);
 
-        const result = bcrypt.compare(req.body.password, user.password);
-
-        if (!result) {
-          return res.status(unauthorizedCode).json({
-            message: "Auth failed",
-          });
-        }
-
-        const token = jwt.sign(
-          { email: user.email, userId: user._id },
-          process.env.JWT_KEY,
-          { expiresIn: "1h" }
-        );
-
-        res.status(successCode).json({
-          token: token,
-          expiresIn: 3600,
-          userId: user._id,
-        });
-    } catch (error) {
-        return res.status(401).json({
-          message: "Invalid authentication credentials",
-        });
-    }
-};
-
-export default {
-    loginUser
-};
+export default router;

@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from "mongoose";
 
+import authRoutes from './routes/auth';
+
 var app = express();
 
 mongoose
