@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   imports: [ReactiveFormsModule],
 })
-export class LoginComponent implements OnInit {
+export class LogInComponent implements OnInit {
   private router = inject(Router);
 
   public authService: AuthService = new AuthService();
@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.pattern(`^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$`),
+        Validators.maxLength(64),
+        Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
       ]),
     });
   }
@@ -27,10 +28,23 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (this.loginForm.invalid) {
       console.log('Invalid form');
-      this.router.navigate(['auth/login']);
+      // this.router.navigate(['auth/login']);
+      return;
     } else {
-      this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+      this.authService.logIn(this.loginForm.value.email, this.loginForm.value.password);
       this.router.navigate(['']);
     }
+
+    this.loginForm.reset();
+  }
+
+  hasErrors(fieldName: string) : boolean {
+    const errors = this.loginForm.get(fieldName)?.errors;
+    
+    if (errors) {
+      return true;
+    }
+
+    return false;
   }
 }

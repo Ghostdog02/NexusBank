@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="signUpForm" (submit)="onSignUp()" style="font-size: 17px">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input 
+              type="email" 
+              id="email" 
+              class="form-control"
+              [class.is-invalid]="hasErrors('email')"
+              [class.is-valid]="!hasErrors('email')"
+              aria-describedby="emailHelp"
+              formControlName="email"
+              placeholder="Enter your email"
+            />
+            @if (hasErrors('email')) {
+              <div class="invalid-feedback">
+                Please enter a valid email.
+              </div>
+            }
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input 
+              type="password" 
+              id="password" 
+              class="form-control" 
+              [class.is-invalid]="hasErrors('password')"
+              [class.is-valid]="!hasErrors('password')"
+              formControlName="password"
+              placeholder="Enter your password"
+            >
+            @if (hasErrors('password')) {
+              <div class="invalid-feedback">
+                Enter a password containing a minimum of eight characters, at least one letter, 
+                one number and one special character
+              </div>
+            }
+          </div>
+          <button type="submit" class="btn btn-primary" style="font-size: 17px" >Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

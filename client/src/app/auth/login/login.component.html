@@ -4,31 +4,40 @@
       <div class="card-body">
         <form [formGroup]="loginForm" (submit)="onLogin()" style="font-size: 17px">
           <div class="mb-3">
-            <label for="inputEmail" class="form-label">Email address</label>
+            <label for="email" class="form-label">Email address</label>
             <input 
               type="email" 
-              class="form-control" 
-              id="inputEmail" 
-              aria-describedby="emailHelp" 
+              id="email" 
+              class="form-control"
+              [class.is-invalid]="hasErrors('email')"
+              [class.is-valid]="!hasErrors('email')"
+              aria-describedby="emailHelp"
               formControlName="email"
+              placeholder="Enter your email"
             />
-            <p style="color: red;">
-                Please enter a valid email address with no more than 64 characters before the @ 
-                symbol that doesn't start or end with a period, followed by a valid domain name, 
-                with the entire address being no longer than 254 characters total.
-            </p>
+            @if (hasErrors('email')) {
+              <div class="invalid-feedback">
+                Please enter a valid email.
+              </div>
+            }
           </div>
           <div class="mb-3">
-            <label for="inputPassword" class="form-label">Password</label>
+            <label for="password" class="form-label">Password</label>
             <input 
               type="password" 
+              id="password" 
               class="form-control" 
-              id="inputPassword" 
+              [class.is-invalid]="hasErrors('password')"
+              [class.is-valid]="!hasErrors('password')"
               formControlName="password"
+              placeholder="Enter your password"
             >
-            <p style="color: red;">
-                Minimum eight characters, at least one letter, one number and one special character
-            </p>
+            @if (hasErrors('password')) {
+              <div class="invalid-feedback">
+                Enter a password containing a minimum of eight characters, at least one letter, 
+                one number and one special character
+              </div>
+            }
           </div>
           <button type="submit" class="btn btn-primary" style="font-size: 17px" >Submit</button>
         </form>

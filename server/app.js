@@ -4,13 +4,18 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from "mongoose";
 
-import authRoutes from './routes/auth';
+import authRoutes from './routes/auth.js';
 
 var app = express();
 
 mongoose
   .connect(
-    `mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.7`
+    `mongodb://127.0.0.1:27017`, {
+      dbName: "Bank",
+      directConnection: true,
+      serverSelectionTimeoutMS: 2000,
+      appName: "mongosh 2.5.7"
+    }
   )
   .then(() => {
     console.log("Connected to database");
@@ -19,11 +24,24 @@ mongoose
     console.log("Connection failed!");
   });
 
-
 app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
+
+  next();
+});
 
 app.use("/api/auth", authRoutes);
 
