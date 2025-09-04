@@ -1,12 +1,16 @@
 <nav class="navbar navbar-expand-lg bg-black">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="">
-            <!-- <img src="../../assets/images/BankLogo.png" alt="Bank Logo"> -->
+        <a class="navbar-brand" routerLink="/">
+            
             Home
         </a>
-        <div class="navbar-nav">
+
+        <!-- <img src="assets/images/BankLogo.png"> -->
+        @if (!isAuthenticated) {
+            <div class="navbar-nav">
             <a class="nav-button logIn" routerLink="auth/login">Log in</a>
             <a class="nav-button signIp" routerLink="auth/signup">Sign up</a>
         </div>
+        }
     </div>
 </nav>

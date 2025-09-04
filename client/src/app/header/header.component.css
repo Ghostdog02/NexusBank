@@ -3,8 +3,13 @@ a {
     font-size: 25px;
 }
 
-button {
+/* button {
     color-scheme: black;
+} */
+
+img {
+    width: 10px;
+    height: 10px;
 }
 
 .navbar-brand {
