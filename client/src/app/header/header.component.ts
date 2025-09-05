@@ -10,12 +10,16 @@ import { AuthService } from "../auth/auth.service";
 })
 export class HeaderComponent implements OnInit{
   authService = inject(AuthService);
-  isAuthenticated = false;
+  isAuthenticated: boolean | null = null;
   
   ngOnInit(): void {
     this.authService.getAuthStatusListener()
       .subscribe((authStatus) => {
         this.isAuthenticated = authStatus;
       });
+  }
+
+  onLogoutUser() {
+    this.authService.logoutUser();
   }
 }

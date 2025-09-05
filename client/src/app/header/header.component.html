@@ -6,11 +6,15 @@
         </a>
 
         <!-- <img src="assets/images/BankLogo.png"> -->
-        @if (!isAuthenticated) {
+        @if (isAuthenticated !== null && !isAuthenticated) {
             <div class="navbar-nav">
-            <a class="nav-button logIn" routerLink="auth/login">Log in</a>
-            <a class="nav-button signIp" routerLink="auth/signup">Sign up</a>
-        </div>
+                <a class="nav-button logIn" routerLink="auth/login">Log in</a>
+                <a class="nav-button signIp" routerLink="auth/signup">Sign up</a>
+            </div>
+        } @else {
+            <div class="navbar-nav">
+                <a class="nav-button logout" (click)="onLogoutUser()">Logout</a>
+            </div>
         }
     </div>
 </nav>

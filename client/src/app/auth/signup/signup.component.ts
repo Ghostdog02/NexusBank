@@ -23,6 +23,8 @@ export class SignUpComponent {
         Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
       ]),
     });
+
+    this.signUpForm.markAllAsTouched();
   }
 
   onSignUp() {
@@ -31,7 +33,7 @@ export class SignUpComponent {
       return;
       // this.router.navigate(['auth/login']);
     } else {
-      this.authService.signUp(this.signUpForm.value.email, this.signUpForm.value.password);
+      this.authService.createUser(this.signUpForm.value.email, this.signUpForm.value.password);
       this.router.navigate(['']);
     }
 
@@ -39,12 +41,6 @@ export class SignUpComponent {
   }
 
   hasErrors(fieldName: string): boolean {
-    const errors = this.signUpForm.get(fieldName)?.errors;
-
-    if (errors) {
-      return true;
-    }
-
-    return false;
+    return this.authService.hasValidationErrors(fieldName, this.signUpForm);
   }
 }

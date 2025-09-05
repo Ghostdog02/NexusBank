@@ -51,22 +51,22 @@ export const createUser = async (req, res) => {
   try {
     let user = await User.findOne({ email: req.body.email }).exec();
 
-    if (!user) {
-      const hash = await bcrypt.hash(req.body.password, 10);
+    const hash = await bcrypt.hash(req.body.password, 10);
 
-      user = new User({ email: req.body.email, password: hash, role: "Customer" });
+    user = new User({
+      email: req.body.email,
+      password: hash,
+      role: "Customer",
+    });
 
-      const result = await user.save().exec();
+    const result = await user.save().exec();
 
-      res.status(successfulCreation).json({
-        message: "Successful user creation",
-        result: result,
-      });
+    res.status(successfulCreation).json({
+      message: "Successful user creation",
+      result: result,
+    });
 
-      console.log(user);
-    } else {
-      logInUser(req, res);
-    }
+    console.log(user);
 
   } catch (error) {
     res.status(internalServerErrorCode).json({

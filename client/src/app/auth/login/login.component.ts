@@ -23,6 +23,8 @@ export class LogInComponent implements OnInit {
         Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
       ]),
     });
+
+    this.loginForm.markAllAsTouched();
   }
 
   onLogin() {
@@ -38,13 +40,7 @@ export class LogInComponent implements OnInit {
     this.loginForm.reset();
   }
 
-  hasErrors(fieldName: string) : boolean {
-    const errors = this.loginForm.get(fieldName)?.errors;
-    
-    if (errors) {
-      return true;
-    }
-
-    return false;
+  hasErrors(fieldName: string): boolean {
+    return this.authService.hasValidationErrors(fieldName, this.loginForm);
   }
 }
