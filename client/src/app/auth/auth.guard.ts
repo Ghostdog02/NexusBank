@@ -6,11 +6,12 @@ export function authGuard(route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
 ): MaybeAsync<GuardResult> {
     const router = inject(Router);
-    const isAuth = inject(AuthService).getIsAuth();
+    const authService = inject(AuthService);
+    const isAuth = authService.getAuthSignal();
 
     if (!isAuth) {
         router.navigate(["/auth/login"]);
     }
 
-    return isAuth;
+    return isAuth();
 }

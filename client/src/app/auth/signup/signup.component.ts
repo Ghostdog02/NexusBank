@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
   templateUrl: './signup.component.html',
   imports: [ReactiveFormsModule]
 })
-export class SignUpComponent {
+export class SignupComponent {
   private router = inject(Router);
 
   public authService: AuthService = new AuthService();

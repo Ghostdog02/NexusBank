@@ -7,14 +7,13 @@ import { AuthService } from './auth/auth.service';
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App implements OnInit{
+export class App implements OnInit {
   protected readonly title = signal('client');
   private authService = inject(AuthService);
-  
+
   ngOnInit(): void {
     this.authService.autoAuthUser();
   }
-  
 }

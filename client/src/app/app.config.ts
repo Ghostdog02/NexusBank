@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
   provideZonelessChangeDetection
 } from '@angular/core';
 
