@@ -12,10 +12,10 @@ const BACKEND_URL = environment.apiUrl + '/auth'
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private httpClient = inject(HttpClient);
-  private authStatusListener = new BehaviorSubject<boolean>(false);
+  private authStatusListener = new BehaviorSubject<boolean>(this.getInitialAuthState());
   private router = inject(Router);
   private tokenTimer?: ReturnType<typeof window.setTimeout>;
-  private userId = '';
+  private userId: string | null = null;
   private isAuth = false;
   private token = '';
 
@@ -23,7 +23,18 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
-  getIsAuth() : boolean {
+  private getInitialAuthState(): boolean {
+    const authData = this.getAuthData();
+    if (!authData?.token || !authData?.expirationDate) {
+      return false;
+    }
+
+    const now = new Date();
+    const expiresIn = authData.expirationDate.getTime() - now.getTime();
+    return expiresIn > 0;
+  }
+
+  getIsAuth(): boolean {
     return this.isAuth;
   }
 
@@ -32,11 +43,11 @@ export class AuthService {
   }
 
   getAuthData() {
-    const token = localStorage.getItem('token');
-    const expirationDate = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
+    const token = window.localStorage.getItem('token');
+    const expirationDate = window.localStorage.getItem('expiration');
+    const userId = window.localStorage.getItem('userId');
 
-    if (!token || !expirationDate || !userId) {
+    if (!token || !expirationDate) {
       return;
     }
 
@@ -56,8 +67,8 @@ export class AuthService {
           this.token = response.token;
 
           if (this.token) {
-            const expiresInduration = response.expiresIn;
-            this.setAuthTimer(expiresInduration);
+            const expiresInDuration = response.expiresIn;
+            this.setAuthTimer(expiresInDuration);
 
             this.userId = response.userId;
 
@@ -65,14 +76,16 @@ export class AuthService {
             this.isAuth = true;
 
             const now = new Date();
-            const expirationDate = new Date(now.getTime() + expiresInduration * 1000);
+            const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
             console.log(expirationDate);
 
             this.saveAuthData(this.token, expirationDate, this.userId);
             this.router.navigate(['/']);
           }
         },
-        error: () => this.authStatusListener.next(false),
+        error: () => {
+          this.authStatusListener.next(false), (this.isAuth = false);
+        },
       });
   }
 
@@ -80,7 +93,9 @@ export class AuthService {
     const authData: AuthData = { email: email, password: password };
     this.httpClient.post(BACKEND_URL + '/signup', authData).subscribe({
       next: () => this.router.navigate(['/']),
-      error: () => this.authStatusListener.next(false),
+      error: () => {
+        this.authStatusListener.next(false), (this.isAuth = false);
+      },
     });
   }
 
@@ -89,14 +104,13 @@ export class AuthService {
     this.authStatusListener.next(false);
     this.isAuth = false;
     this.userId = '';
-    
+
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
 
     this.router.navigate(['/']);
   }
 
-  
   autoAuthUser() {
     const authInformation = this.getAuthData();
 
@@ -125,15 +139,15 @@ export class AuthService {
   }
 
   private saveAuthData(token: string, expirationDate: Date, userId: string) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('expiration', expirationDate.toISOString());
-    localStorage.setItem('userId', userId);
+    window.localStorage.setItem('token', token);
+    window.localStorage.setItem('expiration', expirationDate.toISOString());
+    window.localStorage.setItem('userId', userId);
   }
 
   private clearAuthData() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiration');
-    localStorage.removeItem('userId');
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('expiration');
+    window.localStorage.removeItem('userId');
   }
 
   hasValidationErrors(fieldName: string, form: FormGroup) {

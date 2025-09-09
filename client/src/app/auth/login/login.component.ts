@@ -34,7 +34,6 @@ export class LogInComponent implements OnInit {
       return;
     } else {
       this.authService.logIn(this.loginForm.value.email, this.loginForm.value.password);
-      this.router.navigate(['']);
     }
 
     this.loginForm.reset();

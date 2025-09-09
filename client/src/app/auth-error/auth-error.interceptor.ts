@@ -2,11 +2,8 @@ import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from '@angul
 import { inject } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
-import { AuthErrorComponent } from './auth-error.component';
-
 import { AuthErrorService } from './auth-error.service';
-
-import { ToastrModule } from 'ngx-toastr';
+import { AuthErrorComponent } from './auth-error.component';
 
 export function authErrorInterceptor(
   this: any,
@@ -14,21 +11,12 @@ export function authErrorInterceptor(
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> {
   
-  let authErrorService = inject(AuthErrorService);
+  let authErrorComponent = inject(AuthErrorComponent);
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      let errorMessage = 'An unknown error occurred';
+      authErrorComponent.handleError(error.error);
 
-      errorMessage = authErrorService.handleError(error.error);
-
-      dialog.open(AuthErrorComponent, {
-        data: { message: errorMessage },
-        width: '400px',
-        disableClose: false,
-      });
-      // console.log(error);
-      // alert(error.error.message);
       return throwError(() => {
         return error;
       });

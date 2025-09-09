@@ -34,7 +34,6 @@ export class SignUpComponent {
       // this.router.navigate(['auth/login']);
     } else {
       this.authService.createUser(this.signUpForm.value.email, this.signUpForm.value.password);
-      this.router.navigate(['']);
     }
 
     this.signUpForm.reset();

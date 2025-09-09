@@ -23,10 +23,11 @@
       },
       "skipFiles": [
         "/mount/Projects/NexusBank/server/node_modules/**/*.js",
-        "<node_internals>/**/*.js",
         "<node_internals>/**",
+        "<node_internals>/**/*.js",
+        "<node_internals>/internal/**",
         "**/node_modules/**",
-        "<node_internals>/internal/**"
+        "node_modules/**/*.js"
       ],
       "smartStep": true
     },
@@ -40,10 +41,11 @@
       "skipFiles": [
         "$/mount/Projects/NexusBank/client/node_modules/**/*.js",
         "$/mount/Projects/NexusBank/client/lib/**/*.js",
-        "<node_internals>/**/*.js",
         "<node_internals>/**",
+        "<node_internals>/**/*.js",
+        "<node_internals>/internal/**",
         "**/node_modules/**",
-        "<node_internals>/internal/**"
+        "node_modules/**/*.js"
       ]
     }
   ]

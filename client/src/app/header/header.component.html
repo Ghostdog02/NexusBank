@@ -1,18 +1,21 @@
 <nav class="navbar navbar-expand-lg bg-black">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/">
-            Home
-        </a>
+        <div class="navbar-nav">
+            <a class="nav-link active" routerLink="/">
+                Home
+            </a>
+        </div>
 
         <!-- <img src="assets/images/BankLogo.png"> -->
-        @if (isAuthenticated !== null && !isAuthenticated) {
+        @if (!userIsAuthenticated) {
             <div class="navbar-nav">
                 <a class="nav-button logIn" routerLink="auth/login">Log in</a>
-                <a class="nav-button signIp" routerLink="auth/signup">Sign up</a>
+                <a class="nav-button signUp" routerLink="auth/signup">Sign up</a>
             </div>
         } @else {
             <div class="navbar-nav">
-                <a class="nav-button logout" (click)="onLogoutUser()">Logout</a>
+                <a class="nav-button logout" (click)="onLogoutUser()" routerLink="/"></a>
+                <!-- <button class="btn btn-danger" (click)="onLogoutUser()">Logout</button> -->
             </div>
         }
     </div>
