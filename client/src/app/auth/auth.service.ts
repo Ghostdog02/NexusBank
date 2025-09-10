@@ -4,7 +4,7 @@ import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { AuthData } from "./auth-data.model";
 import { BehaviorSubject, Subject } from "rxjs";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup } from "@angular/forms";
 
 const BACKEND_URL = environment.apiUrl + '/auth' 
@@ -14,6 +14,7 @@ export class AuthService {
   private httpClient = inject(HttpClient);
   private authStatusListener = new BehaviorSubject<boolean>(false);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private tokenTimer?: ReturnType<typeof window.setTimeout>;
   private userId: string | null = null;
   //private isAuth = false;
@@ -98,7 +99,9 @@ export class AuthService {
             console.log(expirationDate);
 
             this.saveAuthData(this.token, expirationDate, this.userId);
-            this.router.navigate(['/']);
+            this.router.navigate(['..']);
+            this.router.navigate(['..', 'home'], { relativeTo: this.route });
+            this.router.navigate(['..']);
           } else {
             this.updateAuthState(false);
           }

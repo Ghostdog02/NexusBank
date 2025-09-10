@@ -38,15 +38,44 @@
       "url": "http://localhost:4200",
       "webRoot": "/mount/Projects/NexusBank/client",
       "runtimeExecutable": "/usr/bin/brave-browser-stable",
+      "sourceMaps": true,
       "skipFiles": [
-        "$/mount/Projects/NexusBank/client/node_modules/**/*.js",
-        "$/mount/Projects/NexusBank/client/lib/**/*.js",
+        "/mount/Projects/NexusBank/client/node_modules/**/*.js",
+        "/mount/Projects/NexusBank/client/lib/**/*.js",
         "<node_internals>/**",
-        "<node_internals>/**/*.js",
-        "<node_internals>/internal/**",
         "**/node_modules/**",
-        "node_modules/**/*.js"
-      ]
+        "**/node_modules/**/*.js",
+
+        // Skip Angular framework files
+        "**/@angular/**",
+        "**/rxjs/**",
+        "**/zone.js/**",
+
+        // Skip webpack and build artifacts
+        "**/webpack/**",
+        "**/main.js",
+        "**/polyfills.js",
+        "**/runtime.js",
+        "**/vendor.js",
+        "**/*.chunk.js",
+
+        // Skip generated/compiled files
+        "**/.angular/**",
+        "**/dist/**",
+        "**/*.ngfactory.js",
+        "**/*.ngstyle.js",
+
+        // Skip specific problematic files
+        "**/index.js",
+        "**/bootstrap",
+        "**/platform-browser-dynamic/**",
+
+        // Skip Chrome extension files
+        "chrome-extension://**"
+      ],
+      "smartStep": true,
+      "enableContentValidation": false,
+      "trace": false
     }
   ]
 }

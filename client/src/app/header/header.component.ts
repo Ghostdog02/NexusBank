@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from "@angular/router";
-import { Subscription } from "rxjs";
 
 import { AuthService } from "../auth/auth.service";
 
@@ -10,7 +9,7 @@ import { AuthService } from "../auth/auth.service";
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   imports: [RouterLink],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   //private authListenerSubs: Subscription = new Subscription();
@@ -20,7 +19,7 @@ export class HeaderComponent {
 
   //public userIsAuthenticated: boolean | null = null;
 
-  public userIsAuthenticated = this.authService.getAuthSignal();
+  public userIsAuthenticated = this.authService.isAuthenticated;
 
   // ngOnInit(): void {
   //   this.authListenerSubs = this.authService
