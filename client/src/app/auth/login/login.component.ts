@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
   imports: [ReactiveFormsModule],
 })
 export class LoginComponent implements OnInit {
-  private router = inject(Router);
+  //private router = inject(Router);
 
   public authService: AuthService = new AuthService();
   public loginForm: FormGroup = new FormGroup({});
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       // this.router.navigate(['auth/login']);
       return;
     } else {
+      this.authService.isAuthenticated.set(false);
       this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
     }
 

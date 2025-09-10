@@ -1,7 +1,6 @@
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
-  provideZoneChangeDetection,
   provideZonelessChangeDetection
 } from '@angular/core';
 
@@ -12,7 +11,6 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { provideToastr } from 'ngx-toastr';
 
 import { authInterceptor } from './auth/auth.interceptor';
-import { authErrorInterceptor } from './auth-error/auth-error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
