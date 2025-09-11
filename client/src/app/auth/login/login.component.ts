@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
       // this.router.navigate(['auth/login']);
       return;
     } else {
-      this.authService.isAuthenticated.set(false);
       this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
     }
 

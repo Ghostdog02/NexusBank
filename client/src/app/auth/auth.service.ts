@@ -1,35 +1,42 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, signal } from "@angular/core";
+import { ChangeDetectorRef, inject, Injectable, signal } from '@angular/core';
 
-import { environment } from "../../../environments/environment";
-import { AuthData } from "./auth-data.model";
-import { BehaviorSubject } from "rxjs";
-import { Router } from "@angular/router";
-import { FormGroup } from "@angular/forms";
-import { toSignal } from "@angular/core/rxjs-interop";
+import { environment } from '../../../environments/environment';
+import { AuthData } from './auth-data.model';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
-const BACKEND_URL = environment.apiUrl + '/auth' 
+const BACKEND_URL = environment.apiUrl + '/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private httpClient = inject(HttpClient);
   private authStatusListener = new BehaviorSubject<boolean>(false);
   private router = inject(Router);
-  //private route = inject(ActivatedRoute);
+
   private tokenTimer?: ReturnType<typeof setTimeout>;
   private userId: string | null = null;
-  //private isAuth = false;
-  private token: string = '';
-  private hasTimerStarted = signal(false);
 
-  public isAuthenticated = signal<boolean>(false);
+  private token: string = '';
+  private hasTimerStarted = signal<boolean>(false);
+
+  public isAuthenticated = signal<boolean>(this.getInitialValue());
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
 
-  getAuthSignal() {
-    return this.isAuthenticated;
+  // getAuthSignal() {
+  //   return this.isAuthenticated.asReadonly();
+  // }
+
+  getInitialValue() {
+    if (this.getAuthData()) {
+      return true;
+    }
+
+    return false;
   }
 
   getToken() {
@@ -52,103 +59,61 @@ export class AuthService {
     };
   }
 
-  loginUser(email: string, password: string) {
+  async loginUser(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
-    // this.httpClient
-    //   .post<{ token: string; expiresIn: number; userId: string }>(BACKEND_URL + '/login', authData)
-    //   .subscribe({
-    //     next: (response) => {
-    //       this.token = response.token;
 
-    //       if (this.token) {
-    //         const expiresInDuration = response.expiresIn;
-    //         this.setAuthTimer(expiresInDuration);
-
-    //         this.userId = response.userId;
-
-    //         //this.updateAuthState(true);
-    //         this.isAuthenticated.set(true);
-
-    //         const now = new Date();
-    //         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-    //         console.log(expirationDate);
-
-    //         this.saveAuthData(this.token, expirationDate, this.userId);
-    //         // this.router.navigate(['/auth/signup']);
-    //         // this.router.navigateByUrl('/header');
-    //         // this.router.navigateByUrl('/auth/signup');
-    //         this.router.navigateByUrl('/');
-            
-    //         // this.router.navigate(['/']);
-    //       } 
-    //     },
-    //     error: () => {
-    //       //this.updateAuthState(false);
-    //       this.isAuthenticated.set(true);
-    //     },
-    //   });
     try {
-      const response = toSignal(this.httpClient.post<{
-        token: string;
-        expiresIn: number;
-        userId: string;
-      }>(BACKEND_URL + '/login', authData));
+      const response = await firstValueFrom(
+        this.httpClient.post<{ token: string; expiresIn: number; userId: string }>(
+          BACKEND_URL + '/login',
+          authData
+        )
+      );
 
       if (response == undefined) {
         throw new Error('Response from loginUser endpoint returned undefined');
       }
 
-      this.token = response()!.token;
+      this.token = response!.token;
 
       if (this.token) {
-        const expiresInDuration = response()!.expiresIn;
+        const expiresInDuration = response!.expiresIn;
 
         if (!expiresInDuration) {
-          throw new Error('ExpiresInDuration field was null from login endpoint response');
+          throw new Error('ExpiresInDuration field was null from login endpoint response()');
         }
 
         this.setAuthTimer(expiresInDuration);
 
-        this.userId = response()!.userId;
+        this.userId = response!.userId;
 
         if (!this.userId) {
-          throw new Error('The user id was null from login endpoint response');
+          throw new Error('The user id was null from login endpoint response()');
         }
-
-        this.isAuthenticated.set(true);
 
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
         console.log(expirationDate);
 
         this.saveAuthData(this.token, expirationDate, this.userId);
-        // this.router.navigate(['/auth/signup']);
-        // this.router.navigateByUrl('/header');
-        // this.router.navigateByUrl('/auth/signup');
-        this.router.navigateByUrl('/');
-        
-        // this.router.navigate(['/']);
-      }
+        this.isAuthenticated.set(true);
 
+        this.router.navigateByUrl('/');
+      }
     } catch (error) {
       this.isAuthenticated.set(false);
+
+      console.log(error);
     }
   }
 
-  createUser(email: string, password: string) {
+  async createUser(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
-    // this.httpClient.post(BACKEND_URL + '/signup', authData).subscribe({
-    //   next: () => {
-    //     this.router.navigate(['/']);
-    //   },
-    //   error: () => {
-    //     this.isAuthenticated.set(false);
-    //     //this.updateAuthState(false);
-    //   },
-    // });
 
     try {
-      const response = toSignal(this.httpClient.post(BACKEND_URL + '/signup', authData));
+      const response = await firstValueFrom(
+        this.httpClient.post(BACKEND_URL + '/signup', authData)
+      );
 
       if (!response) {
         throw new Error('An error ocurred during user creation');
@@ -161,7 +126,6 @@ export class AuthService {
   }
 
   logoutUser() {
-    // this.updateAuthState(false);
     this.isAuthenticated.set(false);
     this.token = '';
     this.userId = '';
@@ -187,7 +151,6 @@ export class AuthService {
       this.token = authInformation.token;
       this.userId = authInformation.userId;
       this.setAuthTimer(expiresIn / 1000);
-      //this.updateAuthState(true);
       this.isAuthenticated.set(true);
     }
   }
@@ -201,7 +164,6 @@ export class AuthService {
     console.log('Settinng timer ' + duration);
     this.hasTimerStarted.set(true);
     this.tokenTimer = setTimeout(() => {
-      this.hasTimerStarted.set(false);
       this.logoutUser();
     }, duration * 1000);
   }
