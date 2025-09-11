@@ -18,40 +18,34 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   imports: [RouterLink],
-  //changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
-  //private authListenerSubs: Subscription = new Subscription();
+export class HeaderComponent implements OnInit, OnDestroy {
+  private authListenerSubs: Subscription = new Subscription();
   private authService = inject(AuthService);
   //private cdr = inject(ChangeDetectorRef);
   //public userIsAuthenticated$: Observable<boolean> = new Observable();
 
-  //public userIsAuthenticated: boolean | null = null;
+  public userIsAuthenticated: boolean = false;
 
-  public userIsAuthenticated = computed(() => this.authService.isAuthenticated());
+  //public userIsAuthenticated = computed(() => this.authService.isAuthenticated());
 
   //public userIsAuthenticated;
 
-  // ngOnInit(): void {
-  //   // this.authListenerSubs = this.authService
-  //   //   .getAuthStatusListener()
-  //   //   .subscribe((isAuthenticated) => {
-  //   //     this.userIsAuthenticated = isAuthenticated
-  //   //   });
-
-  // }
-
-  constructor() {
-    effect(() => {
-      this.userIsAuthenticated();
-    });
+  ngOnInit(): void {
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService
+      .getAuthStatusListener()
+      .subscribe((isAuthenticated) => {
+        this.userIsAuthenticated = isAuthenticated
+      });
+    // this.userIsAuthenticated();
   }
 
   onLogoutUser() {
     this.authService.logoutUser();
   }
 
-  // ngOnDestroy(): void {
-  //   this.authListenerSubs.unsubscribe();
-  // }
+  ngOnDestroy(): void {
+    this.authListenerSubs.unsubscribe();
+  }
 }

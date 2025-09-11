@@ -8,7 +8,6 @@ import { AuthService } from './auth/auth.service';
   imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App implements OnInit {
   protected readonly title = signal('client');

@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -27,13 +26,13 @@ export class LoginComponent implements OnInit {
     this.loginForm.markAllAsTouched();
   }
 
-  onLogin() {
+  async onLogin() {
     if (this.loginForm.invalid) {
       console.log('Invalid form');
       // this.router.navigate(['auth/login']);
       return;
     } else {
-      this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
+      await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
     }
 
     this.loginForm.reset();

@@ -27,13 +27,13 @@ export class SignupComponent {
     this.signUpForm.markAllAsTouched();
   }
 
-  onSignUp() {
+  async onSignUp() {
     if (this.signUpForm.invalid) {
       console.log('Invalid form');
       return;
       // this.router.navigate(['auth/login']);
     } else {
-      this.authService.createUser(this.signUpForm.value.email, this.signUpForm.value.password);
+      await this.authService.createUser(this.signUpForm.value.email, this.signUpForm.value.password);
     }
 
     this.signUpForm.reset();

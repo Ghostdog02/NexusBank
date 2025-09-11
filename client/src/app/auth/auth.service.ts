@@ -12,16 +12,18 @@ const BACKEND_URL = environment.apiUrl + '/auth';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private httpClient = inject(HttpClient);
-  private authStatusListener = new BehaviorSubject<boolean>(false);
+  private authStatusListener = new BehaviorSubject<boolean>(this.getInitialValue());
   private router = inject(Router);
 
   private tokenTimer?: ReturnType<typeof setTimeout>;
   private userId: string | null = null;
 
   private token: string = '';
-  private hasTimerStarted = signal<boolean>(false);
+  //private hasTimerStarted = signal<boolean>(false);
 
   public isAuthenticated = signal<boolean>(this.getInitialValue());
+
+  public isAuth: boolean = this.getInitialValue();
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
@@ -30,6 +32,10 @@ export class AuthService {
   // getAuthSignal() {
   //   return this.isAuthenticated.asReadonly();
   // }
+
+  getIsAuth() {
+    return this.isAuth;
+  }
 
   getInitialValue() {
     if (this.getAuthData()) {
@@ -96,12 +102,17 @@ export class AuthService {
         console.log(expirationDate);
 
         this.saveAuthData(this.token, expirationDate, this.userId);
+
         this.isAuthenticated.set(true);
+        this.authStatusListener.next(true);
+        this.isAuth = true;
 
         this.router.navigateByUrl('/');
       }
     } catch (error) {
       this.isAuthenticated.set(false);
+      this.authStatusListener.next(false);
+      this.isAuth = false;
 
       console.log(error);
     }
@@ -122,11 +133,16 @@ export class AuthService {
       this.router.navigate(['/']);
     } catch (error) {
       this.isAuthenticated.set(false);
+      this.authStatusListener.next(false);
+      this.isAuth = false;
     }
   }
 
   logoutUser() {
     this.isAuthenticated.set(false);
+    this.authStatusListener.next(false);
+    this.isAuth = false;
+
     this.token = '';
     this.userId = '';
 
@@ -162,7 +178,6 @@ export class AuthService {
 
   private setAuthTimer(duration: number) {
     console.log('Settinng timer ' + duration);
-    this.hasTimerStarted.set(true);
     this.tokenTimer = setTimeout(() => {
       this.logoutUser();
     }, duration * 1000);
