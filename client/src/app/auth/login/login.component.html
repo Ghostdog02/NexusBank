@@ -2,12 +2,12 @@
   <div class="col-12 col-md-6 col-lg-4">
     <div class="card">
       <div class="card-body">
-        <form [formGroup]="loginForm" (submit)="onLogin()" style="font-size: 17px" autocomplete="on">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="font-size: 17px" autocomplete="on">
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input 
-              type="email" 
               id="email" 
+              type="email" 
               class="form-control"
               [class.is-invalid]="hasErrors('email')"
               [class.is-valid]="!hasErrors('email')"

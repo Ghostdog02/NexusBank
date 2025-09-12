@@ -1,6 +1,8 @@
 import {
   ApplicationConfig,
-  provideBrowserGlobalErrorListeners
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
+  provideZonelessChangeDetection
 } from '@angular/core';
 
 import { provideRouter, withDebugTracing } from '@angular/router';
@@ -14,12 +16,13 @@ import { authInterceptor } from './auth/auth.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withDebugTracing()),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     provideToastr({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
-      preventDuplicates: true
+      preventDuplicates: true,
     }),
   ],
 };

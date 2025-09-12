@@ -5,9 +5,9 @@
                 Home
             </a>
         </div>
-        <p style="color: white;">{{ userIsAuthenticated }}</p>
+        <p style="color: white;">{{ isAuthSignal }}</p>
         <!-- <img src="assets/images/BankLogo.png"> -->
-        @if (!userIsAuthenticated) {
+        @if (!isAuthSignal) {
             <div class="navbar-nav">
                 <a class="nav-button logIn" routerLink="auth/login">Log in</a>
                 <a class="nav-button signUp" routerLink="auth/signup">Sign up</a>

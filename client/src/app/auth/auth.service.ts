@@ -37,6 +37,10 @@ export class AuthService {
     return this.isAuth;
   }
 
+  getIsAuthSignal() {
+    return this.isAuthenticated();
+  }
+
   getInitialValue() {
     if (this.getAuthData()) {
       return true;
@@ -106,6 +110,8 @@ export class AuthService {
         this.isAuthenticated.set(true);
         this.authStatusListener.next(true);
         this.isAuth = true;
+        
+        
 
         this.router.navigateByUrl('/');
       }
@@ -168,6 +174,8 @@ export class AuthService {
       this.userId = authInformation.userId;
       this.setAuthTimer(expiresIn / 1000);
       this.isAuthenticated.set(true);
+      this.authStatusListener.next(true);
+      this.isAuth = true;
     }
   }
 
