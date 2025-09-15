@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
@@ -6,10 +6,10 @@ import { AuthService } from '../auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   imports: [ReactiveFormsModule],
-  providers: [ApplicationRef],
+  providers: [],
 })
 export class LoginComponent implements OnInit {
-  public authService: AuthService = new AuthService();
+  public authService = inject(AuthService);
   public loginForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
