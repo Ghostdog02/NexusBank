@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { ChangeDetectorRef, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
 import { AuthData } from './auth-data.model';
@@ -19,9 +19,6 @@ export class AuthService {
   private userId: string | null = null;
 
   private token: string = '';
-  //private hasTimerStarted = signal<boolean>(false);
-
-  public isAuthenticated = signal<boolean>(this.getInitialValue());
 
   public isAuth: boolean = this.getInitialValue();
 
@@ -29,16 +26,8 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
-  // getAuthSignal() {
-  //   return this.isAuthenticated.asReadonly();
-  // }
-
   getIsAuth() {
     return this.isAuth;
-  }
-
-  getIsAuthSignal() {
-    return this.isAuthenticated();
   }
 
   getInitialValue() {
@@ -107,16 +96,12 @@ export class AuthService {
 
         this.saveAuthData(this.token, expirationDate, this.userId);
 
-        this.isAuthenticated.set(true);
         this.authStatusListener.next(true);
         this.isAuth = true;
         
-        
-
         this.router.navigateByUrl('/');
       }
     } catch (error) {
-      this.isAuthenticated.set(false);
       this.authStatusListener.next(false);
       this.isAuth = false;
 
@@ -138,14 +123,12 @@ export class AuthService {
 
       this.router.navigate(['/']);
     } catch (error) {
-      this.isAuthenticated.set(false);
       this.authStatusListener.next(false);
       this.isAuth = false;
     }
   }
 
   logoutUser() {
-    this.isAuthenticated.set(false);
     this.authStatusListener.next(false);
     this.isAuth = false;
 
@@ -173,16 +156,10 @@ export class AuthService {
       this.token = authInformation.token;
       this.userId = authInformation.userId;
       this.setAuthTimer(expiresIn / 1000);
-      this.isAuthenticated.set(true);
       this.authStatusListener.next(true);
       this.isAuth = true;
     }
   }
-
-  // private updateAuthState(isAuth: boolean) {
-  //   this.isAuthenticated.set(isAuth);
-  //   this.authStatusListener.next(isAuth);
-  // }
 
   private setAuthTimer(duration: number) {
     console.log('Settinng timer ' + duration);

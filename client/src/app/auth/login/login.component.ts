@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
@@ -6,10 +6,9 @@ import { AuthService } from '../auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   imports: [ReactiveFormsModule],
+  providers: [ApplicationRef],
 })
 export class LoginComponent implements OnInit {
-  //private router = inject(Router);
-
   public authService: AuthService = new AuthService();
   public loginForm: FormGroup = new FormGroup({});
 
@@ -33,11 +32,11 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     if (this.loginForm.invalid) {
       console.log('Invalid form');
-      // this.router.navigate(['auth/login']);
       return;
-    } 
+    }
 
     await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
+
     this.loginForm.reset();
   }
 

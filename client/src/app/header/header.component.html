@@ -1,21 +1,19 @@
 <nav class="navbar navbar-expand-lg bg-black">
-    <div class="container-fluid">
-        <div class="navbar-nav">
-            <a class="nav-link active" routerLink="">
-                Home
-            </a>
-        </div>
-        <p style="color: white;">{{ isAuthSignal }}</p>
-        <!-- <img src="assets/images/BankLogo.png"> -->
-        @if (!isAuthSignal) {
-            <div class="navbar-nav">
-                <a class="nav-button logIn" routerLink="auth/login">Log in</a>
-                <a class="nav-button signUp" routerLink="auth/signup">Sign up</a>
-            </div>
-        } @else {
-            <div class="navbar-nav">
-                <button class="btn btn-danger" (click)="onLogoutUser()">Logout</button>
-            </div>
-        }
+  <div class="container-fluid">
+    <div class="navbar-nav">
+      <a class="nav-link active" routerLink=""> Home </a>
     </div>
+    <p style="color: white;">{{ userIsAuthenticated }}</p>
+    
+    @if (!userIsAuthenticated) {
+    <div class="navbar-nav">
+      <a class="nav-button logIn" routerLink="auth/login">Log in</a>
+      <a class="nav-button signUp" routerLink="auth/signup">Sign up</a>
+    </div>
+    } @else {
+    <div class="navbar-nav">
+      <button class="btn btn-danger" (click)="onLogoutUser()">Logout</button>
+    </div>
+    }
+  </div>
 </nav>

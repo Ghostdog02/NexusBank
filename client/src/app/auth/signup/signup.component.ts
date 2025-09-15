@@ -31,7 +31,6 @@ export class SignupComponent {
     if (this.signUpForm.invalid) {
       console.log('Invalid form');
       return;
-      // this.router.navigate(['auth/login']);
     } else {
       await this.authService.createUser(this.signUpForm.value.email, this.signUpForm.value.password);
     }
