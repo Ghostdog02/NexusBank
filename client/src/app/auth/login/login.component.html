@@ -1,13 +1,18 @@
-<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh">
   <div class="col-12 col-md-6 col-lg-4">
     <div class="card">
       <div class="card-body">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="font-size: 17px" autocomplete="on">
+        <form
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+          style="font-size: 17px"
+          autocomplete="on"
+        >
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input 
-              id="email" 
-              type="email" 
+            <input
+              id="email"
+              type="email"
               class="form-control"
               [class.is-invalid]="hasErrors('email')"
               [class.is-valid]="!hasErrors('email')"
@@ -16,32 +21,49 @@
               placeholder="Enter your email"
             />
             @if (hasErrors('email')) {
-              <div class="invalid-feedback">
-                Please enter a valid email.
-              </div>
+            <div class="invalid-feedback">Please enter a valid email.</div>
             }
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input 
-              type="password" 
-              id="password" 
-              class="form-control" 
+            <input
+              type="password"
+              id="password"
+              class="form-control"
               [class.is-invalid]="hasErrors('password')"
               [class.is-valid]="!hasErrors('password')"
               formControlName="password"
               placeholder="Enter your password"
-            >
+            />
             @if (hasErrors('password')) {
-              <div class="invalid-feedback">
-                Enter a password containing a minimum of eight characters, at least one letter, 
-                one number and one special character
-              </div>
+            <div class="invalid-feedback">
+              Enter a password containing a minimum of eight characters, at least one letter, one
+              number and one special character
+            </div>
             }
           </div>
-          <button type="submit" class="btn btn-primary" style="font-size: 17px" >Submit</button>
+          <button type="submit" class="btn btn-primary" style="font-size: 17px">Submit</button>
         </form>
         <p>{{ this.authService.isAuth }}</p>
+        <div
+          id="g_id_onload"
+          data-client_id="285781225544-lmcfditu6npfia178di1ur3735vl9hst.apps.googleusercontent.com"
+          data-context="signin"
+          data-ux_mode="popup"
+          data-login_uri="http://localhost:3000/google-login"
+          data-auto_select="true"
+          data-itp_support="true"
+        ></div>
+
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-shape="pill"
+          data-theme="filled_black"
+          data-text="signin_with"
+          data-size="large"
+          data-logo_alignment="left"
+        ></div>
       </div>
     </div>
   </div>

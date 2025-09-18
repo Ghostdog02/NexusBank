@@ -40,6 +40,7 @@ export const logInUser = async (req, res) => {
       expiresIn: 3600,
       userId: user._id,
     });
+    // eslint-disable-next-line no-unused-vars
   } catch (error) {
     return res.status(unauthorizedCode).json({
       message: "Invalid authentication credentials",
@@ -68,6 +69,7 @@ export const createUser = async (req, res) => {
 
     console.log(user);
 
+    // eslint-disable-next-line no-unused-vars
   } catch (error) {
     res.status(internalServerErrorCode).json({
       message: "Invalid authentication credentials!",
@@ -77,5 +79,5 @@ export const createUser = async (req, res) => {
 
 export default {
   logInUser,
-  createUser
+  createUser,
 };
