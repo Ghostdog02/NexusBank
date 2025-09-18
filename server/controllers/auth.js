@@ -60,7 +60,7 @@ export const createUser = async (req, res) => {
       role: "Customer",
     });
 
-    const result = await user.save().exec();
+    const result = await user.save();
 
     res.status(successfulCreation).json({
       message: "Successful user creation",
