@@ -77,6 +77,14 @@ export const createUser = async (req, res) => {
   }
 };
 
+// export const logInGoogle = async (req, res) => {
+//   try {
+    
+//   } catch (error) {
+    
+//   }
+// };
+
 export default {
   logInUser,
   createUser,
