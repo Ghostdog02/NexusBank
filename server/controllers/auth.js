@@ -77,15 +77,21 @@ export const createUser = async (req, res) => {
   }
 };
 
-// export const logInGoogle = async (req, res) => {
-//   try {
-    
-//   } catch (error) {
-    
-//   }
-// };
+export const logInUserWithGoogle = async (req, res) => {
+  try {
+    console.log("HI");
+    res.status(successCode).json({
+      message: "Successful method call",
+    });
+  } catch (error) {
+    res.status(internalServerErrorCode).json({
+      message: "Method call failed",
+    });
+  }
+};
 
 export default {
   logInUser,
   createUser,
+  logInUserWithGoogle,
 };

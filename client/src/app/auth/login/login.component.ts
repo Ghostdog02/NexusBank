@@ -1,11 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { GoogleSigninButtonDirective } from "@abacritt/angularx-social-login";
+import { GoogleLoginComponent } from "./google-login/google-login.component";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, GoogleLoginComponent],
   providers: [],
 })
 export class LoginComponent implements OnInit {
