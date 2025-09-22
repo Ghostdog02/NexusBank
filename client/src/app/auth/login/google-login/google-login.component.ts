@@ -1,10 +1,10 @@
-import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
+import { GoogleSigninButtonModule, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-google-login',
-  imports: [],
+  imports: [GoogleSigninButtonModule],
   providers: [],
   templateUrl: './google-login.component.html',
   styleUrl: './google-login.component.css',
@@ -20,9 +20,7 @@ export class GoogleLoginComponent {
     });
   }
 
-  signInWithGoogle() {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
+  handleOauthResponse() {}
 
   ngOnDestroy() {
     this.socialSubscription.unsubscribe();
