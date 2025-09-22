@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { GoogleSigninButtonDirective } from "@abacritt/angularx-social-login";
 import { GoogleLoginComponent } from "./google-login/google-login.component";
 
 @Component({

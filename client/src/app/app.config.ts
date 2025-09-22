@@ -1,5 +1,6 @@
 import {
   ApplicationConfig,
+  importProvidersFrom,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -11,7 +12,11 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { provideToastr } from 'ngx-toastr';
 
 import { authInterceptor } from './auth/auth.interceptor';
-import { GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule,
+} from '@abacritt/angularx-social-login';
 
 export const appConfig: ApplicationConfig = {
   providers: [

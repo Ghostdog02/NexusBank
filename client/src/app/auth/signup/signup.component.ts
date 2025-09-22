@@ -6,12 +6,12 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
 })
 export class SignupComponent {
   private router = inject(Router);
 
-  public authService: AuthService = new AuthService();
+  public authService: AuthService = inject(AuthService);
   public signUpForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
@@ -32,7 +32,10 @@ export class SignupComponent {
       console.log('Invalid form');
       return;
     } else {
-      await this.authService.createUser(this.signUpForm.value.email, this.signUpForm.value.password);
+      await this.authService.createUser(
+        this.signUpForm.value.email,
+        this.signUpForm.value.password
+      );
     }
 
     this.signUpForm.reset();

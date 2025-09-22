@@ -2,13 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './auth/auth.service';
-import { LoginComponent } from './auth/login/login.component';
-import { SocialLoginModule } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, SocialLoginModule],
-  providers: [LoginComponent],
+  imports: [RouterOutlet, HeaderComponent],
+  providers: [],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
