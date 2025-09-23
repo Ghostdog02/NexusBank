@@ -6,6 +6,7 @@ import { AuthData } from './auth-data.model';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { SocialUser } from '@abacritt/angularx-social-login';
 
 const BACKEND_URL = environment.apiUrl + '/auth';
 
@@ -98,7 +99,7 @@ export class AuthService {
 
         this.authStatusListener.next(true);
         this.isAuth = true;
-        
+
         this.router.navigateByUrl('/');
       }
     } catch (error) {
@@ -107,6 +108,14 @@ export class AuthService {
 
       console.log(error);
     }
+  }
+
+  async loginUserWithGoogle(user: SocialUser) {
+    try {
+      const response = await firstValueFrom(
+        
+      );
+    } catch (error) {}
   }
 
   async createUser(email: string, password: string) {

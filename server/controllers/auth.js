@@ -29,18 +29,28 @@ export const logInUser = async (req, res) => {
       });
     }
 
-    const token = jwt.sign(
+    const jwtToken = jwt.sign(
       { email: user.email, userId: user._id },
       process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
 
-    res.status(successCode).json({
-      token: token,
-      expiresIn: 3600,
-      userId: user._id,
-    });
-    // eslint-disable-next-line no-unused-vars
+    const cookieOptions = {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict", // CSRF protection
+      // maxAge: 60 * 60 * 1000, // 1 hour in ms
+    };
+
+    res
+      .status(successCode)
+      .cookie("auth_token", jwtToken, cookieOptions)
+      .json({
+        message: "Authenticated",
+        userId: user._id,
+        expiresIn: 3600,
+      });
+
   } catch (error) {
     return res.status(unauthorizedCode).json({
       message: "Invalid authentication credentials",
@@ -79,10 +89,7 @@ export const createUser = async (req, res) => {
 
 export const logInUserWithGoogle = async (req, res) => {
   try {
-    console.log("HI");
-    res.status(successCode).json({
-      message: "Successful method call",
-    });
+    console.log();
   } catch (error) {
     res.status(internalServerErrorCode).json({
       message: "Method call failed",

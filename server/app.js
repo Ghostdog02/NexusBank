@@ -2,7 +2,8 @@ import createError from 'http-errors';
 import express, { json, urlencoded } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import cors from 'cors';
 
 import authRoutes from './routes/auth.js';
 
@@ -29,19 +30,7 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-  );
-
-  next();
-});
+app.use(cors());
 
 app.use("/api/auth", authRoutes);
 

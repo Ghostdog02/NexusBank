@@ -1,6 +1,7 @@
 import { GoogleSigninButtonModule, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-google-login',
@@ -11,16 +12,15 @@ import { Subscription } from 'rxjs';
 })
 export class GoogleLoginComponent {
   socialAuthService = inject(SocialAuthService);
+  authService = inject(AuthService);
   socialSubscription!: Subscription;
 
   ngOnInit(): void {
     this.socialSubscription = this.socialAuthService.authState.subscribe((user) => {
       console.log(user);
-      //perform further logics
+      this.authService.loginUserWithGoogle(user);
     });
   }
-
-  handleOauthResponse() {}
 
   ngOnDestroy() {
     this.socialSubscription.unsubscribe();
