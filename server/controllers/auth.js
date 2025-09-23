@@ -37,7 +37,6 @@ export const logInUser = async (req, res) => {
 
     const cookieOptions = {
       httpOnly: true,
-      secure: true,
       sameSite: "strict", // CSRF protection
       // maxAge: 60 * 60 * 1000, // 1 hour in ms
     };
@@ -47,8 +46,8 @@ export const logInUser = async (req, res) => {
       .cookie("auth_token", jwtToken, cookieOptions)
       .json({
         message: "Authenticated",
-        userId: user._id,
         expiresIn: 3600,
+        userId: user._id,
       });
 
   } catch (error) {

@@ -17,8 +17,7 @@ export class GoogleLoginComponent {
 
   ngOnInit(): void {
     this.socialSubscription = this.socialAuthService.authState.subscribe((user) => {
-      console.log(user);
-      this.authService.loginUserWithGoogle(user);
+      // this.authService.loginUserWithGoogle(user);
     });
   }
 

@@ -8,6 +8,10 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.routes').then((m) => m.authRoutes),
   },

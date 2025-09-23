@@ -7,14 +7,17 @@ import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { SocialUser } from '@abacritt/angularx-social-login';
+import { CookieService } from "ngx-cookie-service";
 
 const BACKEND_URL = environment.apiUrl + '/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private httpClient = inject(HttpClient);
-  private authStatusListener = new BehaviorSubject<boolean>(this.getInitialValue());
   private router = inject(Router);
+  private cookieService = inject(CookieService);
+
+  private authStatusListener = new BehaviorSubject<boolean>(this.getInitialValue());
 
   private tokenTimer?: ReturnType<typeof setTimeout>;
   private userId: string | null = null;
@@ -64,17 +67,18 @@ export class AuthService {
 
     try {
       const response = await firstValueFrom(
-        this.httpClient.post<{ token: string; expiresIn: number; userId: string }>(
+        this.httpClient.post<{ message: string; expiresIn: number; userId: string }>(
           BACKEND_URL + '/login',
-          authData
+          authData,
+          { withCredentials: true }
         )
       );
-
+      
       if (response == undefined) {
         throw new Error('Response from loginUser endpoint returned undefined');
       }
 
-      this.token = response!.token;
+      this.token = this.cookieService.get('auth_token');
 
       if (this.token) {
         const expiresInDuration = response!.expiresIn;
@@ -101,6 +105,8 @@ export class AuthService {
         this.isAuth = true;
 
         this.router.navigateByUrl('/');
+      } else {
+        throw new Error('Jwt token was null');
       }
     } catch (error) {
       this.authStatusListener.next(false);
@@ -110,13 +116,13 @@ export class AuthService {
     }
   }
 
-  async loginUserWithGoogle(user: SocialUser) {
-    try {
-      const response = await firstValueFrom(
-        
-      );
-    } catch (error) {}
-  }
+  // async loginUserWithGoogle(user: SocialUser) {
+  //   try {
+  //     const response = await firstValueFrom(
+
+  //     );
+  //   } catch (error) {}
+  // }
 
   async createUser(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
