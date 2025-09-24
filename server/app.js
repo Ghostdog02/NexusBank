@@ -9,6 +9,9 @@ import authRoutes from './routes/auth.js';
 
 var app = express();
 
+const MONGODB_URI_1 = `mongodb://127.0.0.1:27017`;
+const MONGOTESTDB_URI_1 = 
+
 mongoose
   .connect(
     `mongodb://127.0.0.1:27017`, {
