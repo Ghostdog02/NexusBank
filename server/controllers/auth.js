@@ -61,13 +61,15 @@ export const createUser = async (req, res) => {
   try {
     let user = await User.findOne({ email: req.body.email }).exec();
 
-    const hash = await bcrypt.hash(req.body.password, 10);
+    if (!user) {
+      const hash = await bcrypt.hash(req.body.password, 10);
 
-    user = new User({
-      email: req.body.email,
-      password: hash,
-      role: "Customer",
-    });
+      user = new User({
+        email: req.body.email,
+        password: hash,
+        role: "Customer",
+      });
+    }
 
     const result = await user.save();
 
