@@ -2,25 +2,14 @@ import createError from 'http-errors';
 import express, { json, urlencoded } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import mongoose from 'mongoose';
 import cors from 'cors';
 
+import { connectDB } from './config/database.js';
 import authRoutes from './routes/auth.js';
 
 var app = express();
 
-const MONGODB_URI_1 = `mongodb://127.0.0.1:27017`;
-const MONGOTESTDB_URI_1 = 
-
-mongoose
-  .connect(
-    `mongodb://127.0.0.1:27017`, {
-      dbName: "Bank",
-      directConnection: true,
-      serverSelectionTimeoutMS: 2000,
-      appName: "mongosh 2.5.7"
-    }
-  )
+connectDB()
   .then(() => {
     console.log("Connected to database");
   })
