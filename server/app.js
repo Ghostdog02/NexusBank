@@ -3,11 +3,14 @@ import express, { json, urlencoded } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import { connectDB } from './config/database.js';
 import authRoutes from './routes/auth.js';
 
 var app = express();
+
+dotenv.config();
 
 connectDB()
   .then(() => {

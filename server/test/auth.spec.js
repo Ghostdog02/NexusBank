@@ -2,22 +2,30 @@ import process from "process";
 import path from "path";
 
 import mongoose from "mongoose";
-import { connectDB } from "../config/database";
-import server from "../server";
+import { connectDB } from "../config/database.js";
+import server from "../server.js";
 
 import { before, beforeEach, after, describe, it } from "mocha";
-import chai from "chai";
-import chaiHttp from "chai-http";
+import { use } from "chai";
+import { default as chaiHttp, request } from "chai-http";
 import { assert } from "console";
 
-import User from "../models/user";
+import User from "../models/user.js";
 
 const baseAuthUrl = "/api/auth";
 
-chai.use(chaiHttp);
+use(chaiHttp);
+
 before(async () => {
   process.env.NODE_ENV = "test";
-  await connectDB();
+
+  await connectDB()
+    .then(() => {
+      console.log("Connected to database");
+    })
+    .catch(() => {
+      console.log("Connection failed!");
+    });
 });
 
 beforeEach(async () => {
@@ -42,11 +50,12 @@ describe("Successful User Creation", () => {
       password: "uiAzbnW!zIj1!a",
     };
 
-    //Act and Assert
-    chai
-      .request(server)
-      .post(path.join(baseAuthUrl, "/signup"), authData)
+    request.execute(server)
+      //Act
+      .post(path.join(baseAuthUrl, "/signup"))
+      .send(authData)
       .end(async (err, res) => {
+        //Assert
         assert.equal(res.status, 201, "Http response was different than 201");
         const user = await getUser(authData.email);
         assert.isNotNull(user, "The user was not created");
@@ -55,10 +64,10 @@ describe("Successful User Creation", () => {
           authData.email,
           "The email of the newly created user was different"
         );
-        assert.equal(
+        assert.notEqual(
           user.password,
           authData.password,
-          "The password of the newly created user was different"
+          "Password should be hashed"
         );
         done();
       });

@@ -10,6 +10,6 @@ export const connectDB = async () => {
     serverSelectionTimeoutMS: 2000,
     appName: "mongosh 2.5.7",
   };
-
+ 
   await mongoose.connect(process.env.MONGO_URI, configuration);
 };
