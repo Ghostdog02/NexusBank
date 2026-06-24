@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS dev
+
+WORKDIR /app
+
+RUN apk add --no-cache curl
+
+COPY NexusBank.slnx ./
+COPY NexusBank.Api/NexusBank.Api.csproj NexusBank.Api/
+COPY NexusBank.Application/NexusBank.Application.csproj NexusBank.Application/
+COPY NexusBank.Domain/NexusBank.Domain.csproj NexusBank.Domain/
+COPY NexusBank.Infrastructure/NexusBank.Infrastructure.csproj NexusBank.Infrastructure/
+
+RUN dotnet restore NexusBank.slnx
+
+COPY . .
+
+EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "watch", "--project", "NexusBank.Api", "run"]
+
+CMD ["--urls", "http://0.0.0.0:8080"]
