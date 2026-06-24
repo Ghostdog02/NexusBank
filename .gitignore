@@ -532,5 +532,12 @@ MigrationBackup/
 #VS Code Config
 .vscode/*
 
+# Skills
+skills-lock.json
+
+# Local env files
+.env.*
+.env
+
 # End of https://www.toptal.com/developers/gitignore/api/angular,jsonnet,node,vs
 
