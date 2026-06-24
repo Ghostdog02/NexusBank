@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="NexusBank.Api/NexusBank.Api.csproj" />
+  <Project Path="NexusBank.Application/NexusBank.Application.csproj" />
+  <Project Path="NexusBank.Domain/NexusBank.Domain.csproj" />
+  <Project Path="NexusBank.Infrastructure/NexusBank.Infrastructure.csproj" />
+</Solution>
