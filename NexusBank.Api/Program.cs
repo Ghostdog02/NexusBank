@@ -1,14 +1,24 @@
 using DotNetEnv;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
+using NexusBank.Application.Common.Validators;
+using NexusBank.Infrastructure.Persistence;
 
-namespace NexusBank.Api; 
+namespace NexusBank.Api;
 
 static class Program
 {
     public static void Main(string[] args)
     {
-        Env.Load();
+        var secretsPath = "/run/secrets/app_secrets";
+        if (File.Exists(secretsPath))
+            Env.Load(secretsPath);
+        else
+            Env.Load();
 
         var builder = WebApplication.CreateBuilder(args);
 
@@ -30,12 +40,38 @@ static class Program
 
         builder.Services.AddAuthorization();
 
+        var connectionString =
+            $"Host={Environment.GetEnvironmentVariable("DB_HOST")};" +
+            $"Port={Environment.GetEnvironmentVariable("DB_PORT")};" +
+            $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
+            $"Username={Environment.GetEnvironmentVariable("DB_USER")};" +
+            $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD")}";
+
+        builder.Services.AddDbContext<NexusDbContext>(options =>
+            options.UseNpgsql(connectionString));
+
+        builder.Services.AddHealthChecks()
+            .AddNpgSql(
+                connectionString,
+                name: "database",
+                failureStatus: HealthStatus.Unhealthy,
+                tags: ["ready"]);
+
+        builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
         }
+
+        app.MapHealthChecks("/health");
+
+        app.MapHealthChecks("/health/ready", new HealthCheckOptions
+        {
+            Predicate = check => check.Tags.Contains("ready")
+        });
 
         app.UseHttpsRedirection();
         app.UseAuthentication();
