@@ -3,13 +3,18 @@ services:
     image: postgres:18.4-alpine3.24
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER_FILE: /run/secrets/db_admin_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_admin_password
+      POSTGRES_DB_FILE: /run/secrets/db_name
+    secrets:
+      - db_admin_user
+      - db_admin_password
+      - db_name
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -h localhost -p 5432"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -22,6 +27,8 @@ services:
     restart: unless-stopped
     ports:
       - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
     secrets:
       - app_secrets
     depends_on:
@@ -35,8 +42,14 @@ services:
       start_period: 60s
 
 secrets:
+  db_admin_user:
+    file: ./secrets/db_admin_user.txt
+  db_admin_password:
+    file: ./secrets/db_admin_password.txt
+  db_name:
+    file: ./secrets/db_name.txt
   app_secrets:
-    file: ./.env
+    file: ./.env.development
 
 volumes:
   postgres_data:
