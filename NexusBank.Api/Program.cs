@@ -6,7 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using NexusBank.Application.Common.Validators;
+using NexusBank.Application.Users.Commands.CreateClerkUser;
+using NexusBank.Domain.Repositories;
 using NexusBank.Infrastructure.Persistence;
+using NexusBank.Infrastructure.Persistence.Repositories;
 
 namespace NexusBank.Api;
 
@@ -40,31 +43,34 @@ static class Program
 
         builder.Services.AddAuthorization();
 
-        var connectionString =
+        var appConnectionString =
             $"Host={Environment.GetEnvironmentVariable("DB_HOST")};" +
             $"Port={Environment.GetEnvironmentVariable("DB_PORT")};" +
             $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
-            $"Username={Environment.GetEnvironmentVariable("DB_USER")};" +
-            $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD")}";
+            $"Username={Environment.GetEnvironmentVariable("DB_APP_USER")};" +
+            $"Password={Environment.GetEnvironmentVariable("DB_APP_PASSWORD")}";
 
         builder.Services.AddDbContext<NexusDbContext>(options =>
-            options.UseNpgsql(connectionString));
+            options.UseNpgsql(appConnectionString));
 
         builder.Services.AddHealthChecks()
             .AddNpgSql(
-                connectionString,
+                appConnectionString,
                 name: "database",
                 failureStatus: HealthStatus.Unhealthy,
                 tags: ["ready"]);
 
         builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
 
+        builder.Services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(CreateClerkUserCommand).Assembly));
+
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
-        {
             app.MapOpenApi();
-        }
 
         app.MapHealthChecks("/health");
 
