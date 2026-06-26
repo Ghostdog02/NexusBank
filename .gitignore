@@ -539,5 +539,8 @@ skills-lock.json
 .env.*
 .env
 
+# Docker secrets
+secrets/
+
 # End of https://www.toptal.com/developers/gitignore/api/angular,jsonnet,node,vs
 
