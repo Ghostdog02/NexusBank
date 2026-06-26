@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
+using MediatR;
+using NexusBank.Application.Common.Behaviours;
 using NexusBank.Application.Common.Validators;
 using NexusBank.Application.Users.Commands.CreateClerkUser;
 using NexusBank.Domain.Repositories;
@@ -63,7 +65,10 @@ static class Program
         builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
 
         builder.Services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssembly(typeof(CreateClerkUserCommand).Assembly));
+        {
+            cfg.RegisterServicesFromAssembly(typeof(CreateClerkUserCommand).Assembly);
+            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+        });
 
         builder.Services.AddScoped<IUserRepository, UserRepository>();
 
