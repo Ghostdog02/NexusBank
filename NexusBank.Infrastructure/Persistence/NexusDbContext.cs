@@ -3,10 +3,8 @@ using NexusBank.Domain.Entities;
 
 namespace NexusBank.Infrastructure.Persistence;
 
-public class NexusDbContext : DbContext
+public class NexusDbContext(DbContextOptions<NexusDbContext> options) : DbContext(options)
 {
-    public NexusDbContext(DbContextOptions<NexusDbContext> options) : base(options) { }
-
     public DbSet<User> Users => Set<User>();
 
     public DbSet<UserIdentity> UserIdentities => Set<UserIdentity>();
