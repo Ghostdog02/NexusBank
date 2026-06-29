@@ -80,9 +80,19 @@ static class Program
 
         if (app.Environment.IsDevelopment())
         {
-            using var scope = app.Services.CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<NexusDbContext>();
-            await db.Database.MigrateAsync();
+            var adminConnectionString =
+                $"Host={Environment.GetEnvironmentVariable("DB_HOST")};" +
+                $"Port={Environment.GetEnvironmentVariable("DB_PORT")};" +
+                $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
+                $"Username={Environment.GetEnvironmentVariable("DB_ADMIN_USER")};" +
+                $"Password={Environment.GetEnvironmentVariable("DB_ADMIN_PASSWORD")}";
+
+            var migrationOptions = new DbContextOptionsBuilder<NexusDbContext>()
+                .UseNpgsql(adminConnectionString)
+                .Options;
+
+            await using var migrationDb = new NexusDbContext(migrationOptions);
+            await migrationDb.Database.MigrateAsync();
 
             app.MapOpenApi();
         }

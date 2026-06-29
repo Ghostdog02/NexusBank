@@ -33,7 +33,6 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://0.0.0.0:8080
     volumes:
-      - .:/app
       - dataprotection_keys:/root/.aspnet/DataProtection-Keys
     secrets:
       - app_secrets
