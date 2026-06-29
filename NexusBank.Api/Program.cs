@@ -1,4 +1,5 @@
 using DotNetEnv;
+using Microsoft.AspNetCore.DataProtection;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -17,7 +18,7 @@ namespace NexusBank.Api;
 
 static class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var secretsPath = "/run/secrets/app_secrets";
         if (File.Exists(secretsPath))
@@ -26,6 +27,9 @@ static class Program
             Env.Load();
 
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddDataProtection()
+            .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection-Keys"));
 
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
@@ -75,7 +79,13 @@ static class Program
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
+        {
+            using var scope = app.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<NexusDbContext>();
+            await db.Database.MigrateAsync();
+
             app.MapOpenApi();
+        }
 
         app.MapHealthChecks("/health");
 
