@@ -87,7 +87,7 @@ public class ClerkWebhookController(IMediator mediator) : ControllerBase
         var primaryEmail = data.EmailAddresses
             .First(e => e.Id == data.PrimaryEmailAddressId);
 
-        var verifiedAt = primaryEmail.Verification?.Status == "verified" && primaryEmail.Verification.VerifiedAt is not null
+        var verifiedAt = primaryEmail.Verification is { Status: "verified", VerifiedAt: not null }
             ? DateTimeOffset.FromUnixTimeMilliseconds(primaryEmail.Verification.VerifiedAt.Value).UtcDateTime
             : (DateTime?)null;
 
