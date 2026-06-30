@@ -51,6 +51,10 @@ static class Program
         builder.Services.AddDataProtection()
             .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection-Keys"));
 
+        builder.Services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = Environment.GetEnvironmentVariable("REDIS_CONNECTION_STRING");
+        });
         builder.Services.AddProblemDetails();
         builder.Services.AddRateLimiter(options =>
         {
