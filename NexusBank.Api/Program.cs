@@ -50,6 +50,7 @@ static class Program
         builder.Services.AddDataProtection()
             .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection-Keys"));
 
+        builder.Services.AddProblemDetails();
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
 
@@ -135,6 +136,7 @@ static class Program
         });
 
         app.UseMiddleware<CorrelationIdMiddleware>();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
         app.UseSerilogRequestLogging();
         app.UseHttpsRedirection();
         app.UseAuthentication();
