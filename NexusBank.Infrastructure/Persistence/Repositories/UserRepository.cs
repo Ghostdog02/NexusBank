@@ -8,6 +8,7 @@ public class UserRepository(NexusDbContext db) : IUserRepository
 {
     public Task<User?> GetByClerkUserIdAsync(string clerkUserId, CancellationToken ct = default)
         => db.Users
+             .Include(u => u.Profile)
              .Include(u => u.Identities)
              .FirstOrDefaultAsync(u => u.ClerkUserId == clerkUserId, ct);
 
