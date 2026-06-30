@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS dev
 
 WORKDIR /app
 
-RUN apk add --no-cache curl
+RUN apk add --no-cache curl krb5-libs
 
 COPY NexusBank.slnx ./
 COPY NexusBank.Api/NexusBank.Api.csproj NexusBank.Api/

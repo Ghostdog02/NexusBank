@@ -23,7 +23,7 @@ public record ClerkEmailAddress(
 
 public record ClerkVerification(
     [property: JsonPropertyName("status")] string Status,
-    [property: JsonPropertyName("expire_at")] long? VerifiedAt
+    [property: JsonPropertyName("verified_at")] long? VerifiedAt
 );
 
 public record ClerkExternalAccount(
