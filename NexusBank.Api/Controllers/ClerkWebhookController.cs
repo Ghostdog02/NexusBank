@@ -2,6 +2,7 @@ using System.Net;
 using System.Text.Json;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using NexusBank.Api.Webhooks;
 using NexusBank.Application.Users.Commands.CloseClerkUser;
 using NexusBank.Application.Users.Commands.CreateClerkUser;
@@ -21,6 +22,7 @@ public class ClerkWebhookController(IMediator mediator) : ControllerBase
     };
 
     [HttpPost]
+    [EnableRateLimiting("webhook")]
     public async Task<IActionResult> Handle(
         [FromHeader(Name = "svix-id")] string svixId,
         [FromHeader(Name = "svix-timestamp")] string svixTimestamp,

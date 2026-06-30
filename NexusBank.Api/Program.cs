@@ -20,6 +20,7 @@ using NexusBank.Api.Middleware;
 using NexusBank.Application.Common.Authorization;
 using NexusBank.Application.Common.Services;
 using NexusBank.Domain.Enums;
+using Microsoft.AspNetCore.RateLimiting;
 using Serilog;
 
 namespace NexusBank.Api;
@@ -51,6 +52,16 @@ static class Program
             .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection-Keys"));
 
         builder.Services.AddProblemDetails();
+        builder.Services.AddRateLimiter(options =>
+        {
+            options.AddFixedWindowLimiter("webhook", limiter =>
+            {
+                limiter.PermitLimit = 300;
+                limiter.Window = TimeSpan.FromMinutes(1);
+                limiter.QueueLimit = 0;
+            });
+            options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+        });
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
 
@@ -138,6 +149,7 @@ static class Program
         app.UseMiddleware<CorrelationIdMiddleware>();
         app.UseMiddleware<ExceptionHandlingMiddleware>();
         app.UseSerilogRequestLogging();
+        app.UseRateLimiter();
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();
