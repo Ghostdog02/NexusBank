@@ -12,6 +12,8 @@ public class User
 
     public UserStatus Status { get; set; }
 
+    public UserRole Role { get; set; } = UserRole.Customer;
+
     public KycStatus KycStatus { get; set; }
 
     public DateTime? EmailVerifiedAt { get; set; }
