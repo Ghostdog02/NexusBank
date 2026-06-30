@@ -6,13 +6,13 @@ public class UserProfile
 
     public Guid UserId { get; set; }
 
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; } = null!;
 
-    public string? LastName { get; set; }
+    public string LastName { get; set; } = null!;
 
-    public DateOnly? DateOfBirth { get; set; }
+    public DateOnly DateOfBirth { get; set; }
 
-    public string? NationalId { get; set; }
+    public string NationalId { get; set; } = null!;
 
     public string? AddressLine1 { get; set; }
 
@@ -20,7 +20,7 @@ public class UserProfile
 
     public string? City { get; set; }
 
-    public string? Country { get; set; }
+    public string Country { get; set; } = null!;
 
     public string? PostalCode { get; set; }
 
