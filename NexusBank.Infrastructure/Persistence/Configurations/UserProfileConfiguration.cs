@@ -13,12 +13,15 @@ public class UserProfileConfiguration : IEntityTypeConfiguration<UserProfile>
         builder.HasKey(p => p.Id);
 
         builder.Property(p => p.FirstName)
+            .IsRequired()
             .HasMaxLength(100);
 
         builder.Property(p => p.LastName)
+            .IsRequired()
             .HasMaxLength(100);
 
         builder.Property(p => p.NationalId)
+            .IsRequired()
             .HasMaxLength(100);
 
         builder.Property(p => p.AddressLine1)
@@ -31,6 +34,7 @@ public class UserProfileConfiguration : IEntityTypeConfiguration<UserProfile>
             .HasMaxLength(100);
 
         builder.Property(p => p.Country)
+            .IsRequired()
             .HasColumnType("char(2)");
 
         builder.Property(p => p.PostalCode)
