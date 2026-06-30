@@ -7,12 +7,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using NexusBank.Application.Common.Behaviours;
 using NexusBank.Application.Common.Validators;
 using NexusBank.Application.Users.Commands.CreateClerkUser;
 using NexusBank.Domain.Repositories;
 using NexusBank.Infrastructure.Persistence;
 using NexusBank.Infrastructure.Persistence.Repositories;
+using NexusBank.Api.Services;
+using NexusBank.Api.Authorization;
+using NexusBank.Application.Common.Authorization;
+using NexusBank.Application.Common.Services;
+using NexusBank.Domain.Enums;
 
 namespace NexusBank.Api;
 
@@ -47,7 +53,14 @@ static class Program
                 };
             });
 
-        builder.Services.AddAuthorization();
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("AuthenticatedUser", policy =>
+                policy.RequireAuthenticatedUser());
+
+            options.AddPolicy("AdminOnly", policy =>
+                policy.AddRequirements(new RoleRequirement(UserRole.Admin)));
+        });
 
         var appConnectionString =
             $"Host={Environment.GetEnvironmentVariable("DB_HOST")};" +
@@ -57,7 +70,7 @@ static class Program
             $"Password={Environment.GetEnvironmentVariable("DB_APP_PASSWORD")}";
 
         builder.Services.AddDbContext<NexusDbContext>(options =>
-            options.UseNpgsql(appConnectionString));
+            options.UseNpgsql(appConnectionString).UseSnakeCaseNamingConvention());
 
         builder.Services.AddHealthChecks()
             .AddNpgSql(
@@ -74,7 +87,10 @@ static class Program
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         });
 
+        builder.Services.AddHttpContextAccessor();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+        builder.Services.AddScoped<IAuthorizationHandler, RoleRequirementHandler>();
 
         var app = builder.Build();
 
@@ -89,6 +105,7 @@ static class Program
 
             var migrationOptions = new DbContextOptionsBuilder<NexusDbContext>()
                 .UseNpgsql(adminConnectionString)
+                .UseSnakeCaseNamingConvention()
                 .Options;
 
             await using var migrationDb = new NexusDbContext(migrationOptions);
@@ -108,6 +125,6 @@ static class Program
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
-        app.Run();
+        await app.RunAsync();
     }
 }
