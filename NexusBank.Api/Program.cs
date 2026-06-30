@@ -16,9 +16,11 @@ using NexusBank.Infrastructure.Persistence;
 using NexusBank.Infrastructure.Persistence.Repositories;
 using NexusBank.Api.Services;
 using NexusBank.Api.Authorization;
+using NexusBank.Api.Middleware;
 using NexusBank.Application.Common.Authorization;
 using NexusBank.Application.Common.Services;
 using NexusBank.Domain.Enums;
+using Serilog;
 
 namespace NexusBank.Api;
 
@@ -32,7 +34,18 @@ static class Program
         else
             Env.Load();
 
+        Log.Logger = new LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .CreateBootstrapLogger();
+
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Host.UseSerilog((context, services, config) => config
+            .ReadFrom.Configuration(context.Configuration)
+            .ReadFrom.Services(services)
+            .Enrich.FromLogContext()
+            .WriteTo.Console());
 
         builder.Services.AddDataProtection()
             .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection-Keys"));
@@ -121,6 +134,8 @@ static class Program
             Predicate = check => check.Tags.Contains("ready")
         });
 
+        app.UseMiddleware<CorrelationIdMiddleware>();
+        app.UseSerilogRequestLogging();
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();
