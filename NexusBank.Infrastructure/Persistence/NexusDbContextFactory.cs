@@ -23,6 +23,7 @@ public class NexusDbContextFactory : IDesignTimeDbContextFactory<NexusDbContext>
 
         var options = new DbContextOptionsBuilder<NexusDbContext>()
             .UseNpgsql(connectionString)
+            .UseSnakeCaseNamingConvention()
             .Options;
 
         return new NexusDbContext(options);
