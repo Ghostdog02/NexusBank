@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using NexusBank.Application.Common.Services;
 using NexusBank.Domain.Entities;
+using NexusBank.Domain.Exceptions;
 using NexusBank.Domain.Repositories;
 
 namespace NexusBank.Api.Services;
@@ -19,7 +20,7 @@ public class CurrentUserService(IHttpContextAccessor httpContextAccessor, IUserR
             ?? throw new UnauthorizedAccessException("No authenticated user found.");
 
         _cachedUser = await userRepository.GetByClerkUserIdAsync(clerkUserId, ct)
-            ?? throw new UnauthorizedAccessException($"User {clerkUserId} not found in database.");
+            ?? throw new NotFoundException("Account not yet created. Please retry in a moment.");
 
         return _cachedUser;
     }
