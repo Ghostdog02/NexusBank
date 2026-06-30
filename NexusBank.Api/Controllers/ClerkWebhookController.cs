@@ -3,6 +3,7 @@ using System.Text.Json;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.Extensions.Caching.Distributed;
 using NexusBank.Api.Webhooks;
 using NexusBank.Application.Users.Commands.CloseClerkUser;
 using NexusBank.Application.Users.Commands.CreateClerkUser;
@@ -14,7 +15,10 @@ namespace NexusBank.Api.Controllers;
 
 [ApiController]
 [Route("webhooks/clerk")]
-public class ClerkWebhookController(IMediator mediator) : ControllerBase
+public class ClerkWebhookController(
+    IMediator mediator,
+    IDistributedCache cache,
+    ILogger<ClerkWebhookController> logger) : ControllerBase
 {
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -50,6 +54,20 @@ public class ClerkWebhookController(IMediator mediator) : ControllerBase
             return Unauthorized();
         }
 
+        var cacheKey = $"webhook:processed:{svixId}";
+        try
+        {
+            if (await cache.GetStringAsync(cacheKey, ct) is not null)
+            {
+                logger.LogInformation("Duplicate webhook {SvixId} skipped", svixId);
+                return Ok();
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Redis unavailable; processing webhook {SvixId} without idempotency check", svixId);
+        }
+
         var payload = JsonSerializer.Deserialize<ClerkEventPayload>(body, JsonOptions);
         if (payload is null) return BadRequest();
 
@@ -64,6 +82,18 @@ public class ClerkWebhookController(IMediator mediator) : ControllerBase
             case "user.deleted":
                 await mediator.Send(new CloseClerkUserCommand(payload.Data.Id), ct);
                 break;
+        }
+
+        try
+        {
+            await cache.SetStringAsync(cacheKey, "1", new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(7)
+            }, ct);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Redis unavailable; webhook {SvixId} processed but not marked", svixId);
         }
 
         return Ok();
