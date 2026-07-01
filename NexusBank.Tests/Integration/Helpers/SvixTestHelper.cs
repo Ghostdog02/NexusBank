@@ -11,9 +11,12 @@ public static class SvixTestHelper
 
     static SvixTestHelper()
     {
-        Env.Load(Path.Combine(GetRepoRoot(), ".env.test"));
+        var envFile = Path.Combine(GetRepoRoot(), "NexusBank.Tests", ".env.tests");
+        if (File.Exists(envFile))
+            Env.Load(envFile);
+
         TestSecret = Environment.GetEnvironmentVariable("CLERK_WEBHOOK_SECRET")
-            ?? throw new InvalidOperationException("CLERK_WEBHOOK_SECRET not found in .env.test");
+            ?? throw new InvalidOperationException("CLERK_WEBHOOK_SECRET not set. Add it to NexusBank.Tests/.env.tests or set it as an environment variable.");
     }
 
     /// <summary>
