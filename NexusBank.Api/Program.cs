@@ -25,9 +25,9 @@ using Serilog;
 
 namespace NexusBank.Api;
 
-static class Program
+public class Program
 {
-    public static async Task Main(string[] args)
+    static async Task Main(string[] args)
     {
         var secretsPath = "/run/secrets/app_secrets";
         if (File.Exists(secretsPath))
