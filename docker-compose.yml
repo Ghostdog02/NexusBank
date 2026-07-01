@@ -1,0 +1,87 @@
+services:
+  db:
+    image: postgres:18.4-alpine3.24
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/db_admin_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_admin_password
+      POSTGRES_DB_FILE: /run/secrets/db_name
+    secrets:
+      - db_admin_user
+      - db_admin_password
+      - db_name
+      - db_app_user
+      - db_app_password
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      - ./docker/init.sh:/docker-entrypoint-initdb.d/init.sh
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -p 5432 -U $(cat /run/secrets/db_admin_user) -d $(cat /run/secrets/db_name)"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  redis:
+    image: redis:8.8-alpine
+    restart: unless-stopped
+    command: ["sh", "/etc/redis/redis-entrypoint.sh"]
+    secrets:
+      - redis_password
+    volumes:
+      - redis_data:/data
+      - ./docker/redis.conf:/etc/redis/redis.conf:ro
+      - ./docker/redis-entrypoint.sh:/etc/redis/redis-entrypoint.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a $(tr -d '[:space:]' < /run/secrets/redis_password) --no-auth-warning ping | grep PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+    volumes:
+      - dataprotection_keys:/root/.aspnet/DataProtection-Keys
+    secrets:
+      - app_secrets
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 4
+      start_period: 60s
+
+secrets:
+  db_admin_user:
+    file: ./secrets/db_admin_user.txt
+  db_admin_password:
+    file: ./secrets/db_admin_password.txt
+  db_name:
+    file: ./secrets/db_name.txt
+  db_app_user:
+    file: ./secrets/db_app_user.txt
+  db_app_password:
+    file: ./secrets/db_app_password.txt
+  redis_password:
+    file: ./secrets/redis_password.txt
+  app_secrets:
+    file: ./.env.development
+
+volumes:
+  postgres_data:
+  redis_data:
+  dataprotection_keys:

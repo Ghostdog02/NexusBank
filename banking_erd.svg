@@ -1,0 +1,400 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1318" viewBox="0 0 1600 1318">
+<rect width="1600" height="1318" fill="#f1f5f9"/>
+<text x="800" y="22" text-anchor="middle" font-family="ui-sans-serif,sans-serif" font-size="13" font-weight="600" fill="#475569" letter-spacing="1">BANKING APP — DATABASE SCHEMA</text>
+<defs>
+<filter id="sh" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+</defs>
+<path d="M 660,141.0 L 175.0,141.0 L 175.0,310" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="none"/>
+<polygon points="175.0,310 171.0,302.0 179.0,302.0" fill="#94a3b8"/>
+<rect x="157.0" y="215.5" width="36" height="18" rx="4" fill="white" stroke="#cbd5e1" stroke-width="0.8"/><text x="175.0" y="225.5" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="9.5" font-weight="600" fill="#475569">1:1</text>
+<path d="M 775.0,252 L 775.0,310" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="none"/>
+<polygon points="775.0,310 771.0,302.0 779.0,302.0" fill="#94a3b8"/>
+<rect x="757.0" y="271.0" width="36" height="18" rx="4" fill="white" stroke="#cbd5e1" stroke-width="0.8"/><text x="775.0" y="281.0" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="9.5" font-weight="600" fill="#475569">1:N</text>
+<path d="M 890,141.0 L 1425.0,141.0 L 1425.0,660" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="none"/>
+<polygon points="1425.0,660 1421.0,652.0 1429.0,652.0" fill="#94a3b8"/>
+<rect x="1407.0" y="390.5" width="36" height="18" rx="4" fill="white" stroke="#cbd5e1" stroke-width="0.8"/><text x="1425.0" y="400.5" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="9.5" font-weight="600" fill="#475569">1:N</text>
+<path d="M 660,141.0 L 630,141.0 L 630,1010 L 175.0,1010" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="none"/>
+<polygon points="175.0,1010 183.0,1006.0 183.0,1014.0" fill="#94a3b8"/>
+<rect x="384.5" y="1000.0" width="36" height="18" rx="4" fill="white" stroke="#cbd5e1" stroke-width="0.8"/><text x="402.5" y="1010.0" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="9.5" font-weight="600" fill="#475569">1:N</text>
+<path d="M 890,141.0 L 920,141.0 L 920,1010 L 775.0,1010" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="none"/>
+<polygon points="775.0,1010 783.0,1006.0 783.0,1014.0" fill="#94a3b8"/>
+<rect x="829.5" y="1000.0" width="36" height="18" rx="4" fill="white" stroke="#cbd5e1" stroke-width="0.8"/><text x="847.5" y="1010.0" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="9.5" font-weight="600" fill="#475569">1:N</text>
+<path d="M 660,434.0 L 640,434.0 L 640,609.0 L 310,609.0 L 310,823.0 L 290,823.0" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="none"/>
+<polygon points="290,823.0 298.0,819.0 298.0,827.0" fill="#94a3b8"/>
+<rect x="282.0" y="813.0" width="36" height="18" rx="4" fill="white" stroke="#cbd5e1" stroke-width="0.8"/><text x="300.0" y="823.0" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="9.5" font-weight="600" fill="#475569">1:N</text>
+<path d="M 890,434.0 L 1310,434.0" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="none"/>
+<polygon points="1310,434.0 1302.0,438.0 1302.0,430.0" fill="#94a3b8"/>
+<rect x="1082.0" y="424.0" width="36" height="18" rx="4" fill="white" stroke="#cbd5e1" stroke-width="0.8"/><text x="1100.0" y="434.0" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="9.5" font-weight="600" fill="#475569">1:N</text>
+<path d="M 660,771.0 L 640,771.0 L 640,797.0 L 310,797.0 L 310,823.0 L 290,823.0" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="none"/>
+<polygon points="290,823.0 298.0,819.0 298.0,827.0" fill="#94a3b8"/>
+<rect x="282.0" y="813.0" width="36" height="18" rx="4" fill="white" stroke="#cbd5e1" stroke-width="0.8"/><text x="300.0" y="823.0" text-anchor="middle" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="9.5" font-weight="600" fill="#475569">1:2</text>
+<rect x="664" y="34" width="230" height="222" rx="10" fill="#00000012"/>
+<rect x="660" y="30" width="230" height="222" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_USERS"><rect x="660" y="30" width="230" height="40" rx="10"/></clipPath>
+<rect x="660" y="30" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_USERS)"/>
+<text x="775" y="50" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">USERS</text>
+<rect x="660" y="70" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="70" x2="890" y2="70" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="74" width="26" height="18" rx="3" fill="#fef9c3"/><text x="680" y="84" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="700" y="83" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="882" y="83" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="96" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="96" x2="890" y2="96" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="100" width="26" height="18" rx="3" fill="#ede9fe"/><text x="680" y="110" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#5b21b6">UK</text>
+<text x="700" y="109" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">email</text>
+<text x="882" y="109" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="660" y="122" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="122" x2="890" y2="122" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="126" width="26" height="18" rx="3" fill="#ede9fe"/><text x="680" y="136" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#5b21b6">UK</text>
+<text x="700" y="135" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">phone</text>
+<text x="882" y="135" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="660" y="148" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="148" x2="890" y2="148" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="161" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">password_hash</text>
+<text x="882" y="161" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="660" y="174" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="174" x2="890" y2="174" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="187" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">status</text>
+<text x="882" y="187" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<rect x="660" y="200" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="200" x2="890" y2="200" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="213" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">kyc_status</text>
+<text x="882" y="213" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<clipPath id="rclip_USERS_6"><rect x="660" y="226" width="230" height="26" rx="10"/></clipPath>
+<rect x="660" y="222" width="230" height="30" fill="#ffffff" clip-path="url(#rclip_USERS_6)"/>
+<line x1="660" y1="226" x2="890" y2="226" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="239" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">created_at</text>
+<text x="882" y="239" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">timestamp</text>
+<rect x="660" y="30" width="230" height="222" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="64" y="314" width="230" height="222" rx="10" fill="#00000012"/>
+<rect x="60" y="310" width="230" height="222" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_USER_PROFILES"><rect x="60" y="310" width="230" height="40" rx="10"/></clipPath>
+<rect x="60" y="310" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_USER_PROFILES)"/>
+<text x="175" y="330" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">USER_PROFILES</text>
+<rect x="60" y="350" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="350" x2="290" y2="350" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="67" y="354" width="26" height="18" rx="3" fill="#fef9c3"/><text x="80" y="364" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="100" y="363" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="282" y="363" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="60" y="376" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="376" x2="290" y2="376" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="67" y="380" width="26" height="18" rx="3" fill="#dbeafe"/><text x="80" y="390" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="100" y="389" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">user_id</text>
+<text x="282" y="389" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="60" y="402" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="402" x2="290" y2="402" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="415" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">first_name</text>
+<text x="282" y="415" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="60" y="428" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="428" x2="290" y2="428" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="441" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">last_name</text>
+<text x="282" y="441" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="60" y="454" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="454" x2="290" y2="454" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="467" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">date_of_birth</text>
+<text x="282" y="467" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">date</text>
+<rect x="60" y="480" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="480" x2="290" y2="480" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="493" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">national_id</text>
+<text x="282" y="493" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<clipPath id="rclip_USER_PROFILES_6"><rect x="60" y="506" width="230" height="26" rx="10"/></clipPath>
+<rect x="60" y="502" width="230" height="30" fill="#ffffff" clip-path="url(#rclip_USER_PROFILES_6)"/>
+<line x1="60" y1="506" x2="290" y2="506" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="519" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">address_json</text>
+<text x="282" y="519" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">jsonb</text>
+<rect x="60" y="310" width="230" height="222" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="664" y="314" width="230" height="248" rx="10" fill="#00000012"/>
+<rect x="660" y="310" width="230" height="248" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_ACCOUNTS"><rect x="660" y="310" width="230" height="40" rx="10"/></clipPath>
+<rect x="660" y="310" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_ACCOUNTS)"/>
+<text x="775" y="330" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">ACCOUNTS</text>
+<rect x="660" y="350" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="350" x2="890" y2="350" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="354" width="26" height="18" rx="3" fill="#fef9c3"/><text x="680" y="364" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="700" y="363" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="882" y="363" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="376" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="376" x2="890" y2="376" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="380" width="26" height="18" rx="3" fill="#dbeafe"/><text x="680" y="390" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="700" y="389" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">user_id</text>
+<text x="882" y="389" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="402" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="402" x2="890" y2="402" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="406" width="26" height="18" rx="3" fill="#ede9fe"/><text x="680" y="416" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#5b21b6">UK</text>
+<text x="700" y="415" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">account_number</text>
+<text x="882" y="415" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="660" y="428" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="428" x2="890" y2="428" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="441" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">type</text>
+<text x="882" y="441" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<rect x="660" y="454" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="454" x2="890" y2="454" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="467" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">status</text>
+<text x="882" y="467" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<rect x="660" y="480" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="480" x2="890" y2="480" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="493" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">currency</text>
+<text x="882" y="493" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="660" y="506" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="506" x2="890" y2="506" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="519" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">balance</text>
+<text x="882" y="519" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">decimal</text>
+<clipPath id="rclip_ACCOUNTS_7"><rect x="660" y="532" width="230" height="26" rx="10"/></clipPath>
+<rect x="660" y="528" width="230" height="30" fill="#f4f6fa" clip-path="url(#rclip_ACCOUNTS_7)"/>
+<line x1="660" y1="532" x2="890" y2="532" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="545" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">created_at</text>
+<text x="882" y="545" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">timestamp</text>
+<rect x="660" y="310" width="230" height="248" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1314" y="314" width="230" height="248" rx="10" fill="#00000012"/>
+<rect x="1310" y="310" width="230" height="248" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_CARDS"><rect x="1310" y="310" width="230" height="40" rx="10"/></clipPath>
+<rect x="1310" y="310" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_CARDS)"/>
+<text x="1425" y="330" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">CARDS</text>
+<rect x="1310" y="350" width="230" height="26" fill="#ffffff"/>
+<line x1="1310" y1="350" x2="1540" y2="350" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="1317" y="354" width="26" height="18" rx="3" fill="#fef9c3"/><text x="1330" y="364" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="1350" y="363" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="1532" y="363" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="1310" y="376" width="230" height="26" fill="#f4f6fa"/>
+<line x1="1310" y1="376" x2="1540" y2="376" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="1317" y="380" width="26" height="18" rx="3" fill="#dbeafe"/><text x="1330" y="390" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="1350" y="389" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">account_id</text>
+<text x="1532" y="389" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="1310" y="402" width="230" height="26" fill="#ffffff"/>
+<line x1="1310" y1="402" x2="1540" y2="402" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="415" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">masked_pan</text>
+<text x="1532" y="415" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="1310" y="428" width="230" height="26" fill="#f4f6fa"/>
+<line x1="1310" y1="428" x2="1540" y2="428" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="441" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">card_type</text>
+<text x="1532" y="441" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<rect x="1310" y="454" width="230" height="26" fill="#ffffff"/>
+<line x1="1310" y1="454" x2="1540" y2="454" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="467" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">status</text>
+<text x="1532" y="467" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<rect x="1310" y="480" width="230" height="26" fill="#f4f6fa"/>
+<line x1="1310" y1="480" x2="1540" y2="480" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="493" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">expiry_date</text>
+<text x="1532" y="493" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">date</text>
+<rect x="1310" y="506" width="230" height="26" fill="#ffffff"/>
+<line x1="1310" y1="506" x2="1540" y2="506" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="519" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">daily_limit</text>
+<text x="1532" y="519" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">decimal</text>
+<clipPath id="rclip_CARDS_7"><rect x="1310" y="532" width="230" height="26" rx="10"/></clipPath>
+<rect x="1310" y="528" width="230" height="30" fill="#f4f6fa" clip-path="url(#rclip_CARDS_7)"/>
+<line x1="1310" y1="532" x2="1540" y2="532" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="545" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">created_at</text>
+<text x="1532" y="545" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">timestamp</text>
+<rect x="1310" y="310" width="230" height="248" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="64" y="664" width="230" height="326" rx="10" fill="#00000012"/>
+<rect x="60" y="660" width="230" height="326" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_TRANSACTIONS"><rect x="60" y="660" width="230" height="40" rx="10"/></clipPath>
+<rect x="60" y="660" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_TRANSACTIONS)"/>
+<text x="175" y="680" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">TRANSACTIONS</text>
+<rect x="60" y="700" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="700" x2="290" y2="700" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="67" y="704" width="26" height="18" rx="3" fill="#fef9c3"/><text x="80" y="714" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="100" y="713" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="282" y="713" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="60" y="726" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="726" x2="290" y2="726" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="67" y="730" width="26" height="18" rx="3" fill="#dbeafe"/><text x="80" y="740" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="100" y="739" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">account_id</text>
+<text x="282" y="739" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="60" y="752" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="752" x2="290" y2="752" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="67" y="756" width="26" height="18" rx="3" fill="#dbeafe"/><text x="80" y="766" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="100" y="765" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">transfer_id</text>
+<text x="282" y="765" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="60" y="778" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="778" x2="290" y2="778" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="791" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">direction</text>
+<text x="282" y="791" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<rect x="60" y="804" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="804" x2="290" y2="804" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="817" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">amount</text>
+<text x="282" y="817" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">decimal</text>
+<rect x="60" y="830" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="830" x2="290" y2="830" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="843" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">currency</text>
+<text x="282" y="843" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="60" y="856" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="856" x2="290" y2="856" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="869" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">status</text>
+<text x="282" y="869" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<rect x="60" y="882" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="882" x2="290" y2="882" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="67" y="886" width="26" height="18" rx="3" fill="#ede9fe"/><text x="80" y="896" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#5b21b6">UK</text>
+<text x="100" y="895" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">reference</text>
+<text x="282" y="895" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="60" y="908" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="908" x2="290" y2="908" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="921" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">description</text>
+<text x="282" y="921" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">text</text>
+<rect x="60" y="934" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="934" x2="290" y2="934" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="947" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">metadata</text>
+<text x="282" y="947" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">jsonb</text>
+<clipPath id="rclip_TRANSACTIONS_10"><rect x="60" y="960" width="230" height="26" rx="10"/></clipPath>
+<rect x="60" y="956" width="230" height="30" fill="#ffffff" clip-path="url(#rclip_TRANSACTIONS_10)"/>
+<line x1="60" y1="960" x2="290" y2="960" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="973" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">created_at</text>
+<text x="282" y="973" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">timestamp</text>
+<rect x="60" y="660" width="230" height="326" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="664" y="664" width="230" height="222" rx="10" fill="#00000012"/>
+<rect x="660" y="660" width="230" height="222" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_TRANSFERS"><rect x="660" y="660" width="230" height="40" rx="10"/></clipPath>
+<rect x="660" y="660" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_TRANSFERS)"/>
+<text x="775" y="680" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">TRANSFERS</text>
+<rect x="660" y="700" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="700" x2="890" y2="700" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="704" width="26" height="18" rx="3" fill="#fef9c3"/><text x="680" y="714" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="700" y="713" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="882" y="713" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="726" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="726" x2="890" y2="726" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="730" width="26" height="18" rx="3" fill="#dbeafe"/><text x="680" y="740" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="700" y="739" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">from_account_id</text>
+<text x="882" y="739" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="752" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="752" x2="890" y2="752" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="756" width="26" height="18" rx="3" fill="#dbeafe"/><text x="680" y="766" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="700" y="765" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">to_account_id</text>
+<text x="882" y="765" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="778" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="778" x2="890" y2="778" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="791" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">amount</text>
+<text x="882" y="791" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">decimal</text>
+<rect x="660" y="804" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="804" x2="890" y2="804" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="817" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">currency</text>
+<text x="882" y="817" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="660" y="830" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="830" x2="890" y2="830" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="843" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">status</text>
+<text x="882" y="843" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<clipPath id="rclip_TRANSFERS_6"><rect x="660" y="856" width="230" height="26" rx="10"/></clipPath>
+<rect x="660" y="852" width="230" height="30" fill="#ffffff" clip-path="url(#rclip_TRANSFERS_6)"/>
+<line x1="660" y1="856" x2="890" y2="856" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="869" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">created_at</text>
+<text x="882" y="869" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">timestamp</text>
+<rect x="660" y="660" width="230" height="222" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1314" y="664" width="230" height="196" rx="10" fill="#00000012"/>
+<rect x="1310" y="660" width="230" height="196" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_BENEFICIARIES"><rect x="1310" y="660" width="230" height="40" rx="10"/></clipPath>
+<rect x="1310" y="660" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_BENEFICIARIES)"/>
+<text x="1425" y="680" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">BENEFICIARIES</text>
+<rect x="1310" y="700" width="230" height="26" fill="#ffffff"/>
+<line x1="1310" y1="700" x2="1540" y2="700" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="1317" y="704" width="26" height="18" rx="3" fill="#fef9c3"/><text x="1330" y="714" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="1350" y="713" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="1532" y="713" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="1310" y="726" width="230" height="26" fill="#f4f6fa"/>
+<line x1="1310" y1="726" x2="1540" y2="726" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="1317" y="730" width="26" height="18" rx="3" fill="#dbeafe"/><text x="1330" y="740" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="1350" y="739" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">user_id</text>
+<text x="1532" y="739" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="1310" y="752" width="230" height="26" fill="#ffffff"/>
+<line x1="1310" y1="752" x2="1540" y2="752" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="765" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">nickname</text>
+<text x="1532" y="765" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="1310" y="778" width="230" height="26" fill="#f4f6fa"/>
+<line x1="1310" y1="778" x2="1540" y2="778" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="791" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">account_number</text>
+<text x="1532" y="791" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="1310" y="804" width="230" height="26" fill="#ffffff"/>
+<line x1="1310" y1="804" x2="1540" y2="804" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="817" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">bank_code</text>
+<text x="1532" y="817" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<clipPath id="rclip_BENEFICIARIES_5"><rect x="1310" y="830" width="230" height="26" rx="10"/></clipPath>
+<rect x="1310" y="826" width="230" height="30" fill="#f4f6fa" clip-path="url(#rclip_BENEFICIARIES_5)"/>
+<line x1="1310" y1="830" x2="1540" y2="830" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="1321" y="843" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">created_at</text>
+<text x="1532" y="843" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">timestamp</text>
+<rect x="1310" y="660" width="230" height="196" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="64" y="1014" width="230" height="196" rx="10" fill="#00000012"/>
+<rect x="60" y="1010" width="230" height="196" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_NOTIFICATIONS"><rect x="60" y="1010" width="230" height="40" rx="10"/></clipPath>
+<rect x="60" y="1010" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_NOTIFICATIONS)"/>
+<text x="175" y="1030" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">NOTIFICATIONS</text>
+<rect x="60" y="1050" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="1050" x2="290" y2="1050" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="67" y="1054" width="26" height="18" rx="3" fill="#fef9c3"/><text x="80" y="1064" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="100" y="1063" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="282" y="1063" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="60" y="1076" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="1076" x2="290" y2="1076" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="67" y="1080" width="26" height="18" rx="3" fill="#dbeafe"/><text x="80" y="1090" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="100" y="1089" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">user_id</text>
+<text x="282" y="1089" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="60" y="1102" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="1102" x2="290" y2="1102" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="1115" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">type</text>
+<text x="282" y="1115" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">enum</text>
+<rect x="60" y="1128" width="230" height="26" fill="#f4f6fa"/>
+<line x1="60" y1="1128" x2="290" y2="1128" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="1141" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">message</text>
+<text x="282" y="1141" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">text</text>
+<rect x="60" y="1154" width="230" height="26" fill="#ffffff"/>
+<line x1="60" y1="1154" x2="290" y2="1154" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="1167" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">is_read</text>
+<text x="282" y="1167" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">boolean</text>
+<clipPath id="rclip_NOTIFICATIONS_5"><rect x="60" y="1180" width="230" height="26" rx="10"/></clipPath>
+<rect x="60" y="1176" width="230" height="30" fill="#f4f6fa" clip-path="url(#rclip_NOTIFICATIONS_5)"/>
+<line x1="60" y1="1180" x2="290" y2="1180" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="71" y="1193" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">created_at</text>
+<text x="282" y="1193" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">timestamp</text>
+<rect x="60" y="1010" width="230" height="196" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="664" y="1014" width="230" height="248" rx="10" fill="#00000012"/>
+<rect x="660" y="1010" width="230" height="248" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<clipPath id="hclip_AUDIT_LOGS"><rect x="660" y="1010" width="230" height="40" rx="10"/></clipPath>
+<rect x="660" y="1010" width="230" height="44" rx="0" fill="#1a2e4a" clip-path="url(#hclip_AUDIT_LOGS)"/>
+<text x="775" y="1030" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11.5" font-weight="700" fill="#ffffff" letter-spacing="0.8">AUDIT_LOGS</text>
+<rect x="660" y="1050" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="1050" x2="890" y2="1050" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="1054" width="26" height="18" rx="3" fill="#fef9c3"/><text x="680" y="1064" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="700" y="1063" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">id</text>
+<text x="882" y="1063" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="1076" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="1076" x2="890" y2="1076" stroke="#cbd5e1" stroke-width="0.5"/>
+<rect x="667" y="1080" width="26" height="18" rx="3" fill="#dbeafe"/><text x="680" y="1090" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="700" y="1089" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">user_id</text>
+<text x="882" y="1089" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="1102" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="1102" x2="890" y2="1102" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="1115" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">entity_type</text>
+<text x="882" y="1115" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="660" y="1128" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="1128" x2="890" y2="1128" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="1141" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">entity_id</text>
+<text x="882" y="1141" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">uuid</text>
+<rect x="660" y="1154" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="1154" x2="890" y2="1154" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="1167" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">action</text>
+<text x="882" y="1167" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<rect x="660" y="1180" width="230" height="26" fill="#f4f6fa"/>
+<line x1="660" y1="1180" x2="890" y2="1180" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="1193" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">payload</text>
+<text x="882" y="1193" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">jsonb</text>
+<rect x="660" y="1206" width="230" height="26" fill="#ffffff"/>
+<line x1="660" y1="1206" x2="890" y2="1206" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="1219" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">ip_address</text>
+<text x="882" y="1219" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">varchar</text>
+<clipPath id="rclip_AUDIT_LOGS_7"><rect x="660" y="1232" width="230" height="26" rx="10"/></clipPath>
+<rect x="660" y="1228" width="230" height="30" fill="#f4f6fa" clip-path="url(#rclip_AUDIT_LOGS_7)"/>
+<line x1="660" y1="1232" x2="890" y2="1232" stroke="#cbd5e1" stroke-width="0.5"/>
+<text x="671" y="1245" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="11" fill="#1e293b">created_at</text>
+<text x="882" y="1245" text-anchor="end" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="10" fill="#94a3b8">timestamp</text>
+<rect x="660" y="1010" width="230" height="248" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1310" y="1010" width="230" height="110" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="1324" y="1030" font-family="ui-sans-serif,sans-serif" font-size="11" font-weight="700" fill="#1e293b">Legend</text>
+<rect x="1324" y="1037" width="26" height="18" rx="3" fill="#fef9c3"/>
+<text x="1337" y="1047" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#78350f">PK</text>
+<text x="1358" y="1047" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="11" fill="#475569">Primary key</text>
+<rect x="1324" y="1061" width="26" height="18" rx="3" fill="#dbeafe"/>
+<text x="1337" y="1071" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="1358" y="1071" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="11" fill="#475569">Foreign key</text>
+<rect x="1324" y="1085" width="26" height="18" rx="3" fill="#ede9fe"/>
+<text x="1337" y="1095" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace" font-size="9" font-weight="700" fill="#5b21b6">UK</text>
+<text x="1358" y="1095" dominant-baseline="central" font-family="ui-sans-serif,sans-serif" font-size="11" fill="#475569">Unique key</text>
+</svg>

@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore NexusBank.slnx
+
+      - name: Build
+        run: dotnet build NexusBank.slnx --no-restore -c Release
+
+      - name: Write test secrets
+        run: |
+          echo "CLERK_WEBHOOK_SECRET=${{ secrets.CLERK_WEBHOOK_SECRET }}" > NexusBank.Tests/.env.tests
+
+      - name: Test
+        run: >
+          dotnet test NexusBank.Tests/
+          --no-build -c Release
+          --logger "trx;LogFileName=results.trx"
+          --results-directory ./test-results
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results
+          path: test-results/*.trx
+
+  docker:
+    name: Build & Push
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract image metadata
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=pr
+            type=sha,format=short
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: Dockerfile.prod
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

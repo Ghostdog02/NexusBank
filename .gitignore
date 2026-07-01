@@ -118,6 +118,7 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+NexusBank.Tests/.env.tests
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -206,7 +207,6 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
@@ -300,11 +300,6 @@ $tf/
 
 # Guidance Automation Toolkit
 *.gpState
-
-# ReSharper is a .NET coding add-in
-_ReSharper*/
-*.[Rr]e[Ss]harper
-*.DotSettings.user
 
 # TeamCity is a build add-in
 _TeamCity*
@@ -537,10 +532,16 @@ MigrationBackup/
 
 #VS Code Config
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+
+# Skills
+skills-lock.json
+
+# Local env files
+.env.*
+.env
+
+# Docker secrets
+secrets/
 
 # End of https://www.toptal.com/developers/gitignore/api/angular,jsonnet,node,vs
 
