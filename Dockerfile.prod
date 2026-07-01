@@ -1,0 +1,35 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
+
+WORKDIR /src
+
+COPY NexusBank.slnx ./
+COPY NexusBank.Api/NexusBank.Api.csproj NexusBank.Api/
+COPY NexusBank.Application/NexusBank.Application.csproj NexusBank.Application/
+COPY NexusBank.Domain/NexusBank.Domain.csproj NexusBank.Domain/
+COPY NexusBank.Infrastructure/NexusBank.Infrastructure.csproj NexusBank.Infrastructure/
+
+RUN dotnet restore NexusBank.slnx
+
+COPY NexusBank.Api/ NexusBank.Api/
+COPY NexusBank.Application/ NexusBank.Application/
+COPY NexusBank.Domain/ NexusBank.Domain/
+COPY NexusBank.Infrastructure/ NexusBank.Infrastructure/
+
+RUN dotnet publish NexusBank.Api/NexusBank.Api.csproj \
+    -c Release \
+    -o /app/publish \
+    --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS runtime
+
+WORKDIR /app
+
+RUN apk add --no-cache curl
+
+COPY --from=build /app/publish .
+
+EXPOSE 8080
+
+ENV ASPNETCORE_URLS=http://+:8080
+
+ENTRYPOINT ["dotnet", "NexusBank.Api.dll"]
