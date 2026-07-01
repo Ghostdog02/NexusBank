@@ -12,6 +12,7 @@ jobs:
   test:
     name: Build & Test
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
       - uses: actions/checkout@v7
@@ -26,6 +27,10 @@ jobs:
 
       - name: Build
         run: dotnet build NexusBank.slnx --no-restore -c Release
+
+      - name: Write test secrets
+        run: |
+          echo "CLERK_WEBHOOK_SECRET=${{ secrets.CLERK_WEBHOOK_SECRET }}" > NexusBank.Tests/.env.tests
 
       - name: Test
         run: >
