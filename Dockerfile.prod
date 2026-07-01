@@ -2,13 +2,12 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 
 WORKDIR /src
 
-COPY NexusBank.slnx ./
 COPY NexusBank.Api/NexusBank.Api.csproj NexusBank.Api/
 COPY NexusBank.Application/NexusBank.Application.csproj NexusBank.Application/
 COPY NexusBank.Domain/NexusBank.Domain.csproj NexusBank.Domain/
 COPY NexusBank.Infrastructure/NexusBank.Infrastructure.csproj NexusBank.Infrastructure/
 
-RUN dotnet restore NexusBank.slnx
+RUN dotnet restore NexusBank.Api/NexusBank.Api.csproj
 
 COPY NexusBank.Api/ NexusBank.Api/
 COPY NexusBank.Application/ NexusBank.Application/
