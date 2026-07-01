@@ -48,8 +48,9 @@ public class Program
             .Enrich.FromLogContext()
             .WriteTo.Console());
 
-        builder.Services.AddDataProtection()
-            .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection-Keys"));
+        if (!builder.Environment.IsEnvironment("Testing"))
+            builder.Services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection-Keys"));
 
         builder.Services.AddStackExchangeRedisCache(options =>
         {

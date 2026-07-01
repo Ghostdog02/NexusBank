@@ -15,8 +15,8 @@ public static class SvixTestHelper
         if (File.Exists(envFile))
             Env.Load(envFile);
 
-        TestSecret = Environment.GetEnvironmentVariable("CLERK_WEBHOOK_SECRET")
-            ?? throw new InvalidOperationException("CLERK_WEBHOOK_SECRET not set. Add it to NexusBank.Tests/.env.tests or set it as an environment variable.");
+        TestSecret = (Environment.GetEnvironmentVariable("CLERK_WEBHOOK_SECRET")
+            ?? throw new InvalidOperationException("CLERK_WEBHOOK_SECRET not set. Add it to NexusBank.Tests/.env.tests or set it as an environment variable.")).Trim();
     }
 
     /// <summary>
