@@ -67,7 +67,7 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
-            type=pr
+            type=ref,event=pr
             type=sha,format=short
 
       - name: Set up Docker Buildx
