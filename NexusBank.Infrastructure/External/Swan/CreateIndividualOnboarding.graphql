@@ -1,0 +1,25 @@
+mutation CreateIndividualOnboarding($country: AccountCountry!, $email: String, $redirectUrl: String) {
+    createIndividualAccountHolderOnboarding(
+        input: {
+            accountInfo: { country: $country }
+            accountAdmin: { email: $email }
+            oAuthRedirectParameters: { redirectUrl: $redirectUrl }
+        }
+    ) {
+        ... on CreateIndividualAccountHolderOnboardingSuccessPayload {
+            onboarding {
+                id
+                onboardingUrl
+                statusInfo {
+                    status
+                    ... on OnboardingInvalidStatusInfo {
+                        errors {
+                            field
+                            details
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

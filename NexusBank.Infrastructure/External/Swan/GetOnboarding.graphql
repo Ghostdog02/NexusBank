@@ -1,0 +1,13 @@
+query GetOnboarding($id: ID!) {
+    accountHolderOnboarding(id: $id) {
+        ... on AccountHolderOnboardingBase {
+            id
+            statusInfo {
+                status
+            }
+            account {
+                id
+            }
+        }
+    }
+}
