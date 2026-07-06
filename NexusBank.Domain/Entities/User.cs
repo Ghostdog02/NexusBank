@@ -16,6 +16,10 @@ public class User
 
     public KycStatus KycStatus { get; set; }
 
+    public string? SwanOnboardingId { get; set; }
+
+    public string? SwanAccountId { get; set; }
+
     public DateTime? EmailVerifiedAt { get; set; }
 
     public DateTime? LastSignInAt { get; set; }

@@ -12,6 +12,12 @@ public class UserRepository(NexusDbContext db) : IUserRepository
              .Include(u => u.Identities)
              .FirstOrDefaultAsync(u => u.ClerkUserId == clerkUserId, ct);
 
+    public Task<User?> GetByOnboardingIdAsync(string onboardingId, CancellationToken ct = default)
+        => db.Users
+             .Include(u => u.Profile)
+             .Include(u => u.Identities)
+             .FirstOrDefaultAsync(u => u.SwanOnboardingId == onboardingId, ct);
+
     public async Task AddAsync(User user, CancellationToken ct = default)
     {
         await db.Users.AddAsync(user, ct);
